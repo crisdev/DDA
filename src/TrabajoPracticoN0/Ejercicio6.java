@@ -49,7 +49,7 @@ public class Ejercicio6 {
             System.out.print("Ingrese cantidad de países visitados: ");
             paisesVisitados = TecladoIn.readLineInt();
             
-            if (viajoMasPaises(paisesMasVisitados, paisesVisitados)) {
+            if (paisesVisitados > paisesMasVisitados) {
                 nombreMasViajo = nombre;
                 apellidoMasViajo = apellido;
                 paisesMasVisitados = paisesVisitados;
@@ -79,17 +79,6 @@ public class Ejercicio6 {
      */
     public static boolean participaSorteo(int edad, char estadoCivil) {
         return (edad >= 45) && (edad <= 62) && (estadoCivil == 'S' || estadoCivil == 's');
-    }
-    
-    /**
-     * Este módulo determina qué persona realizó la mayor cantidad de viajes.
-     * 
-     * @param anterior cantidad de países visitados de la persona anterior
-     * @param nuevo cantidad de países visitados de la persona nueva
-     * @return verdadero si la última persona viajó más países que la anterior
-     */
-    public static boolean viajoMasPaises(int anterior, int nuevo) {
-        return nuevo > anterior;
     }
     
     /**
