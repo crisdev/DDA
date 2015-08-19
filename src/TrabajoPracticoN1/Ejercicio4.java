@@ -25,6 +25,7 @@ public class Ejercicio4 {
         binario = TecladoIn.readLine();
         
         System.out.println("El resultado es " + binarioADecimal(binario));
+        System.out.println("El complemento a dos es " + binarioAC2(binario));
     }
     
     /**
@@ -58,24 +59,53 @@ public class Ejercicio4 {
     }
     
     /**
-     * TODO
+     * Transforma un número binario a complemento a dos.
      * 
-     * @param textoBinario
-     * @return 
+     * @param textoBinario cadena binaria
+     * @return cadena binaria complementada a dos
      */
     public static String binarioAC2(String textoBinario) {
         String C2;
         int longitud;
-        boolean esUno;
+        boolean salioUno;
+        char bit;
         
-        esUno = false;
+        salioUno = false;
         C2 = "";
         longitud = textoBinario.length();
         
         for (int i = longitud - 1; i >= 0; i--) {
+            bit = textoBinario.charAt(i);
             
-            if (textoBinario.charAt(i) == '1') {
-                esUno = true;
+            if (bit == '1' && !salioUno)
+            {
+                salioUno = true;
+                C2 = "1" + C2;
+            }
+            else
+            {
+                if (salioUno)
+                {
+                    if (bit == '1')
+                    {
+                        C2 = "0" + C2;
+                    }
+                    else
+                    {
+                        C2 = "1" + C2;
+                    }
+                }   
+                else
+                {
+                    if (bit == '1')
+                    {
+                        C2 = "1" + C2;
+                    }
+                    else
+                    {
+                        C2 = "0" + C2;
+                    }
+                }
             }
             
         }
