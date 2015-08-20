@@ -5,7 +5,8 @@
  * un String de longitud n. Definir operaciones para:
  *
  * a) Obtener el valor del binario ingresado en decimal.
- * b) Obtener el complemento a dos del número binario.
+ * b) Obtener el complemento a uno del número binario.
+ * c) Obtener el complemento a dos del número binario.
  */
 package TrabajoPracticoN1;
 
@@ -24,7 +25,8 @@ public class Ejercicio4 {
         System.out.print("Ingrese número binario: ");
         binario = TecladoIn.readLine();
         
-        System.out.println("El resultado es " + binarioADecimal(binario));
+        System.out.println("El valor decimal es " + binarioADecimal(binario));
+        System.out.println("El complemento a uno es " + binarioAC1(binario));
         System.out.println("El complemento a dos es " + binarioAC2(binario));
     }
     
@@ -56,6 +58,30 @@ public class Ejercicio4 {
         }
         
         return suma;
+    }
+    
+    /**
+     * Transforma un número binario a complemento a uno.
+     * 
+     * @param textoBinario cadena binaria
+     * @return cadena binaria complementada a uno
+     */
+    public static String binarioAC1(String textoBinario) {
+        String C1;
+        int longitud;
+        
+        C1 = "";
+        longitud = textoBinario.length();
+        
+        for (int i = 0; i < longitud; i++) {
+            if (textoBinario.charAt(i) == '0') {
+                C1 += '1';
+            } else {
+                C1 += '0';
+            }
+        }
+        
+        return C1;
     }
     
     /**
