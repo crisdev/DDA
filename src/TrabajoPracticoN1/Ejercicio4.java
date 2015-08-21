@@ -22,12 +22,36 @@ public class Ejercicio4 {
     public static void main(String[] args) {
         String binario;
         
-        System.out.print("Ingrese número binario: ");
-        binario = TecladoIn.readLine();
+        do {
+            System.out.print("Ingrese número binario: ");
+            binario = TecladoIn.readLine();
+        } while (!esBinario(binario));
         
         System.out.println("El valor decimal es " + binarioADecimal(binario));
         System.out.println("El complemento a uno es " + binarioAC1(binario));
         System.out.println("El complemento a dos es " + binarioAC2(binario));
+    }
+    
+    /**
+     * Determina si una cadena de caracteres es un número binario.
+     * 
+     * @param texto cadena a probar
+     * @return verdadero si la cadena es binaria
+     */
+    public static boolean esBinario(String texto) {
+        int longitud;
+        boolean nroBinario;
+        
+        longitud = texto.length();
+        nroBinario = true;
+        
+        for (int i = 0; i < longitud; i++) {
+            if (texto.charAt(i) != '0' && texto.charAt(i) != '1') {
+                nroBinario = false;
+            }
+        }
+        
+        return nroBinario;
     }
     
     /**

@@ -21,15 +21,23 @@ public class Ejercicio5 {
     
     public static void main(String[] args) {
         String conjuntoA, conjuntoB;
+        int longA, longB;
         
         do {
-            System.out.println("Ingrese conjunto A: ");
+            System.out.print("Ingrese conjunto A: ");
             conjuntoA = TecladoIn.readLine();
-            System.out.println("Ingrese conjunto B: ");
+            longA = conjuntoA.length();
+            System.out.print("Ingrese conjunto B: ");
             conjuntoB = TecladoIn.readLine();
-        } while (verificaRepetidos(conjuntoA) || verificaRepetidos(conjuntoB));
+            longB = conjuntoB.length();
+            
+            // repetir mientras haya caracteres repetidos o longitudes distintas
+        } while (longA != longB || verificaRepetidos(conjuntoA) || verificaRepetidos(conjuntoB));
         
-        System.out.println("Union: " + union(conjuntoA, conjuntoB));
+        System.out.println("\nUnion: " + union(conjuntoA, conjuntoB));
+        System.out.println("Intersección: " + interseccion(conjuntoA, conjuntoB));
+        System.out.println("Diferencia A - B: " + diferencia(conjuntoA, conjuntoB));
+        System.out.println("Diferencia B - A: " + diferencia(conjuntoB, conjuntoA));
     }
     
     /**
@@ -62,36 +70,71 @@ public class Ejercicio5 {
     /**
      * Determina la unión de dos conjuntos.
      * 
-     * @param primerConjunto primer conjunto a analizar
-     * @param segundoConjunto segundo conjunto a analizar
+     * @param conjuntoA primer conjunto a analizar
+     * @param conjuntoB segundo conjunto a analizar
      * @return conjunto con elementos sin repetir del primer y segundo conjunto
      */
-    public static String union(String primerConjunto, String segundoConjunto) {
+    public static String union(String conjuntoA, String conjuntoB) {
         String union;
         int longitud;
-        char pivote;
-        boolean estaRepetido;
         
-        longitud = primerConjunto.length();
-        estaRepetido = false;
-        union = "";
+        union = conjuntoA;
+        longitud = conjuntoA.length();
         
         for (int i = 0; i < longitud; i++) {
-            pivote = primerConjunto.charAt(i);
-            
-            for (int j = 0; j < longitud; j++) {
-                if (pivote == segundoConjunto.charAt(j)) {
-                    estaRepetido = true;
-                }
+            // si el caracter no está lo añado al conjunto union
+            if (conjuntoA.indexOf(conjuntoB.charAt(i)) == -1) {
+                union += conjuntoB.charAt(i);
             }
-            
-            if(!estaRepetido) {
-                union += pivote;
-            }
-            
         }
         
         return union;
+    }
+    
+    /**
+     * Determina la intersección entre dos conjuntos.
+     * 
+     * @param conjuntoA primer conjunto
+     * @param conjuntoB segundo conjunto
+     * @return conjunto interseccion de elementos repetidos
+     */
+    public static String interseccion(String conjuntoA, String conjuntoB) {
+        String interseccion;
+        
+        int longitud;
+        
+        interseccion = "";
+        longitud = conjuntoA.length();
+        
+        for (int i = 0; i < longitud; i++) {
+            // añado caracter al conjunto interseccion solo si está repetido
+            if (conjuntoA.indexOf(conjuntoB.charAt(i)) != -1) {
+                interseccion += conjuntoB.charAt(i);
+            }
+        }
+        
+        return interseccion;
+    }
+    
+    public static String diferencia(String conjuntoA, String conjuntoB) {
+        String interseccion;
+        String diferencia;
+        char pivote, posA;
+        
+        interseccion = interseccion(conjuntoA, conjuntoB);
+        diferencia = "";
+        
+        for (int i = 0; i < interseccion.length(); i++) {
+            pivote = interseccion.charAt(i);
+            for (int j = 0; j < conjuntoA.length(); j++) {
+                posA = conjuntoA.charAt(j);  // indice del conjuto A
+                if (pivote != posA) {
+                    diferencia += posA;
+                } 
+            }
+        }
+        
+        return diferencia;
     }
     
 }
