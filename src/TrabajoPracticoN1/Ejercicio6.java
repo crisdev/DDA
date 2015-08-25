@@ -25,25 +25,14 @@ public class Ejercicio6 {
     
     public static void main(String[] args) {
         String conjuntoA, conjuntoB;
-        int longA, longB;
         char elemento;
         
-        do {
-            System.out.print("Ingrese conjunto A: ");
-            conjuntoA = TecladoIn.readLine();
-            longA = conjuntoA.length();
-            System.out.print("Ingrese conjunto B: ");
-            conjuntoB = TecladoIn.readLine();
-            longB = conjuntoB.length();
-            
-            // repetir mientras haya caracteres repetidos o longitudes distintas
-        } while (longA != longB);
+        System.out.print("Ingrese conjunto A: ");
+        conjuntoA = TecladoIn.readLine();
+        System.out.print("Ingrese conjunto B: ");
+        conjuntoB = TecladoIn.readLine();
         
-        System.out.println("Ingrese elemento: ");
-        elemento = TecladoIn.readLineNonwhiteChar();
-        
-        System.out.println("El elemento \"" + elemento + "\" aparece " + multiplicidad(conjuntoA, elemento)
-                            + " veces.");
+        System.out.println("Unión de A y B: " + union(conjuntoA, conjuntoB));
     }
     
     /**
@@ -66,5 +55,16 @@ public class Ejercicio6 {
         }
         
         return nroMiembros;
+    }
+    
+    /**
+     * Retorna la unión de dos multiconjuntos.
+     * 
+     * @param conjuntoA primer conjunto de entrada
+     * @param conjuntoB segundo conjunto de entrada
+     * @return unión de los conjuntos introducidos como parámetros
+     */
+    public static String union(String conjuntoA, String conjuntoB) {
+        return conjuntoA + conjuntoB;
     }
 }
