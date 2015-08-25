@@ -129,10 +129,17 @@ public class Ejercicio5 {
         char elementoInter, elementoConjA;
         boolean estaPresente;
         int i, j;
+        String temporal;
         
         interseccion = interseccion(conjuntoA, conjuntoB);
         diferencia = "";
         estaPresente = false;
+        
+        /*
+        El código que sigue se puede remplazar por una sola línea de código:
+        
+        return conjuntoA.replaceAll(interseccion, "");
+        */
         
         for (i = 0; i < conjuntoA.length(); i++) {
             elementoConjA = conjuntoA.charAt(i);  // indice del conjuto A
@@ -143,17 +150,17 @@ public class Ejercicio5 {
                 if (elementoConjA == elementoInter) {
                     estaPresente = true;
                 }
-                
+                    
                 j++;
             }
-            
+                
             if (!estaPresente) {
                 diferencia += elementoConjA;
             }
             
             estaPresente = false;
         }
-        
+
         return diferencia;
     }
     
