@@ -116,24 +116,35 @@ public class Ejercicio5 {
         return interseccion;
     }
     
+    /**
+     * Calcula la diferencia entre dos conjuntos.
+     * 
+     * @param conjuntoA primer conjunto de entrada
+     * @param conjuntoB segundo conjunto de entrada
+     * @return diferencia entre el primer y segundo conjunto
+     */
     public static String diferencia(String conjuntoA, String conjuntoB) {
         String interseccion;
         String diferencia;
         char elementoInter, elementoConjA;
         boolean estaPresente;
+        int i, j;
         
         interseccion = interseccion(conjuntoA, conjuntoB);
         diferencia = "";
         estaPresente = false;
         
-        for (int i = 0; i < conjuntoA.length(); i++) {
+        for (i = 0; i < conjuntoA.length(); i++) {
             elementoConjA = conjuntoA.charAt(i);  // indice del conjuto A
             
-            for (int j = 0; j < interseccion.length(); j++) {
+            j = 0;
+            while (!estaPresente && j<interseccion.length()) {
                 elementoInter = interseccion.charAt(j);
                 if (elementoConjA == elementoInter) {
                     estaPresente = true;
                 }
+                
+                j++;
             }
             
             if (!estaPresente) {
