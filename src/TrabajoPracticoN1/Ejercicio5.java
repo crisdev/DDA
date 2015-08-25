@@ -129,7 +129,6 @@ public class Ejercicio5 {
         char elementoInter, elementoConjA;
         boolean estaPresente;
         int i, j;
-        String temporal;
         
         interseccion = interseccion(conjuntoA, conjuntoB);
         diferencia = "";
