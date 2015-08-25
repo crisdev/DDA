@@ -119,19 +119,28 @@ public class Ejercicio5 {
     public static String diferencia(String conjuntoA, String conjuntoB) {
         String interseccion;
         String diferencia;
-        char pivote, posA;
+        char elementoInter, elementoConjA;
+        boolean estaPresente;
         
         interseccion = interseccion(conjuntoA, conjuntoB);
         diferencia = "";
+        estaPresente = false;
         
-        for (int i = 0; i < interseccion.length(); i++) {
-            pivote = interseccion.charAt(i);
-            for (int j = 0; j < conjuntoA.length(); j++) {
-                posA = conjuntoA.charAt(j);  // indice del conjuto A
-                if (pivote != posA) {
-                    diferencia += posA;
-                } 
+        for (int i = 0; i < conjuntoA.length(); i++) {
+            elementoConjA = conjuntoA.charAt(i);  // indice del conjuto A
+            
+            for (int j = 0; j < interseccion.length(); j++) {
+                elementoInter = interseccion.charAt(j);
+                if (elementoConjA == elementoInter) {
+                    estaPresente = true;
+                }
             }
+            
+            if (!estaPresente) {
+                diferencia += elementoConjA;
+            }
+            
+            estaPresente = false;
         }
         
         return diferencia;
