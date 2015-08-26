@@ -25,14 +25,16 @@ public class Ejercicio6 {
     
     public static void main(String[] args) {
         String conjuntoA, conjuntoB;
-        char elemento;
         
         System.out.print("Ingrese conjunto A: ");
         conjuntoA = TecladoIn.readLine();
         System.out.print("Ingrese conjunto B: ");
         conjuntoB = TecladoIn.readLine();
         
-        System.out.println("Unión de A y B: " + union(conjuntoA, conjuntoB));
+        System.out.println("\nUnión de A y B: " + union(conjuntoA, conjuntoB));
+        System.out.println("Intersección entre A y B: " + interseccion(conjuntoA, conjuntoB));
+        System.out.println("Diferencia entre A y B: " + diferencia(conjuntoA, conjuntoB));
+        System.out.println("Diferencia entre B y A: " + diferencia(conjuntoB, conjuntoA));
     }
     
     /**
@@ -65,6 +67,93 @@ public class Ejercicio6 {
      * @return unión de los conjuntos introducidos como parámetros
      */
     public static String union(String conjuntoA, String conjuntoB) {
-        return conjuntoA + conjuntoB;
+        String union;
+        int multiplicidadA, multiplicidadB;
+        char elementoA, elementoB;
+        
+        union = "";
+        
+        for (int i = 0; i < conjuntoA.length(); i++) {
+            elementoA = conjuntoA.charAt(i);
+            multiplicidadA = multiplicidad(conjuntoA, elementoA);
+            multiplicidadB = multiplicidad(conjuntoB, elementoA);
+            
+            if (multiplicidadA > multiplicidadB) {
+                union += elementoA;
+            }
+        }
+        
+        for (int i = 0; i < conjuntoB.length(); i++) {
+            elementoB = conjuntoB.charAt(i);
+            multiplicidadA = multiplicidad(conjuntoA, elementoB);
+            multiplicidadB = multiplicidad(conjuntoB, elementoB);
+            
+            if (multiplicidadB >= multiplicidadA) {
+                union += elementoB;
+            }
+        }
+        
+        return union;
+    }
+    
+    /**
+     * Determina la intersección de dos multiconjuntos
+     * 
+     * @param conjuntoA primer multiconjunto de entrada
+     * @param conjuntoB segundo multiconjunto de entrada
+     * @return intersección entre los dos conjuntos de entrada
+     */
+    public static String interseccion(String conjuntoA, String conjuntoB) {
+        String interseccion;
+        String abecedario; 
+        char letra;
+        
+        abecedario = "abcdefghihklmnñopqrstuvwxyz";
+        interseccion = "";
+        
+        for (int i = 0; i < abecedario.length(); i++) {
+            letra = abecedario.charAt(i);
+            if (multiplicidad(conjuntoA, letra) >= multiplicidad(conjuntoB, letra)) {
+                for (int j = 0; j < multiplicidad(conjuntoB, letra); j++) {
+                    interseccion += letra;
+                }
+            } else {
+                for (int j = 0; j < multiplicidad(conjuntoA, letra); j++) {
+                    interseccion += letra;
+                }
+            }
+            
+        }
+        
+        return interseccion;
+    }
+    
+    /**
+     * Calcula la diferencia entre dos multiconjuntos.
+     * 
+     * @param conjuntoA primer conjunto de entrada
+     * @param conjuntoB segundo conjunto de entrada
+     * @return diferencia entre el primer y el segundo conjunto
+     */
+    public static String diferencia(String conjuntoA, String conjuntoB) {
+        String interseccion, diferencia;
+        int repeticiones, i;
+        char elemento;
+        
+        diferencia = conjuntoA;
+        interseccion = interseccion(conjuntoA, conjuntoB);
+        repeticiones = interseccion.length();
+        i = 0;
+        
+        if (!interseccion.equals("")) {
+            while (repeticiones > 0) {
+                elemento = interseccion.charAt(i);
+                diferencia = diferencia.substring(0, diferencia.indexOf(elemento)) + diferencia.substring(diferencia.indexOf(elemento) + 1);
+                i++;
+                repeticiones--;
+            }
+        }
+        
+        return diferencia;
     }
 }
