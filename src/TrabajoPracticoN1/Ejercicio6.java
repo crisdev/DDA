@@ -108,7 +108,7 @@ public class Ejercicio6 {
         String abecedario; 
         char letra;
         
-        abecedario = "abcdefghihklmnñopqrstuvwxyz";
+        abecedario = "abcdefghijklmnñopqrstuvwxyz";
         interseccion = "";
         
         for (int i = 0; i < abecedario.length(); i++) {

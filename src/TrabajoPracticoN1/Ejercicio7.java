@@ -133,7 +133,7 @@ public class Ejercicio7 {
     /**
      * Ordena el conjunto introducido como parámetro.
      * 
-     * @param conjunto
+     * @param conjunto conjunto que se desea ordenar
      * @return conjunto con elementos ordenados
      */
     public static String ordenar(String conjunto) {
