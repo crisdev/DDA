@@ -33,25 +33,35 @@ public class Ejercicio4 {
     }
     
     /**
-     * Determina si una cadena de caracteres es un número binario.
+     * Determina si la cadena enviada como parámetro es un número binario.
      * 
-     * @param texto cadena a probar
-     * @return verdadero si la cadena es binaria
+     * @param cadenaBinaria cadena a comprobar
+     * @return verdadero si todos los caracteres son binarios
      */
-    public static boolean esBinario(String texto) {
-        int longitud;
-        boolean nroBinario;
+    public static boolean esBinario(String cadenaBinaria) {
+        boolean esBinario;
+        char elemento;
+        int i, longitud;
         
-        longitud = texto.length();
-        nroBinario = true;
+        esBinario = true;
+        longitud = cadenaBinaria.length();
+        i = 0;
         
-        for (int i = 0; i < longitud; i++) {
-            if (texto.charAt(i) != '0' && texto.charAt(i) != '1') {
-                nroBinario = false;
-            }
+        if (longitud == 0) {
+            esBinario = false;
         }
         
-        return nroBinario;
+        while (i<longitud && esBinario) {
+            elemento = cadenaBinaria.charAt(i);
+            
+            if (elemento != '0' && elemento != '1') {
+                esBinario = false;
+            }
+            
+            i++;
+        }
+        
+        return esBinario;
     }
     
     /**
