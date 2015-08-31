@@ -1,5 +1,12 @@
 /*
- * Rehacer los ejercicios 4, 5 y 6 del práctico 1 pero utilizando arreglos.
+ * Resolver el siguiente problema aplicando modularización
+ * y arreglos:
+ * Solicitar al usuario un número binario y almacenar en
+ * un String de longitud n. Definir operaciones para:
+ *
+ * a) Obtener el valor del binario ingresado en decimal.
+ * b) Obtener el complemento a uno del número binario.
+ * c) Obtener el complemento a dos del número binario.
  */
 package TrabajoPracticoN2;
 
