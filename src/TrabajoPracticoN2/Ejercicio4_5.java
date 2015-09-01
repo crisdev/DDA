@@ -73,4 +73,47 @@ public class Ejercicio4_5 {
         return repetido;
     }
     
+    /**
+     * Calcula la longitud de la unión de dos conjuntos.
+     * 
+     * @param conjuntoA primer conjunto de entrada
+     * @param conjuntoB segundo conjunto de entrada
+     * @return longitud  del conjunto unión
+     */
+    public static int longitudUnion(char[] conjuntoA, char[] conjuntoB) {
+        int union;
+        int repetidos;
+        
+        repetidos = 0;
+        for (int i = 0; i < conjuntoA.length; i++) {
+            for (int j = 0; j < conjuntoB.length; j++) {
+                if (conjuntoA[i] == conjuntoB[j]) {
+                    repetidos++;
+                }
+            }
+        }
+        
+        union = conjuntoA.length + conjuntoB.length - repetidos;
+        
+        return union;
+    }
+    
+    /*
+    TODO
+    
+    public static char[] unir(char[] conjuntoA, char[] conjuntoB) {
+        char[] union;
+        
+        union = new char[longitudUnion(conjuntoA, conjuntoB)];
+        
+        for (int i = 0; i < conjuntoA.length; i++) {
+            for (int j = 0; j < conjuntoB.length; j++) {
+                if (conjuntoA[i] != conjuntoB[j])
+                
+            }
+        }
+        
+        return union;
+    }
+    */
 }
