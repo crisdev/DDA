@@ -11,7 +11,7 @@ package TrabajoPracticoN2;
 public class Ejercicio6 {
     
     public static void main(String[] args) {
-        int[] arreglo = {5, 8, 9, 12, 34};
+        int[] arreglo = {5, 12, 9, 34, 8};
         
         selectionSort(arreglo);
         
