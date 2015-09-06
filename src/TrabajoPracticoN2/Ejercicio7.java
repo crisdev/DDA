@@ -23,16 +23,14 @@ public class Ejercicio7 {
      * @return posición del índice donde se encuentra el número, -1 en caso contrario
      */
     public static int binarySearch(int[] a, int k) {
-        // TODO
-        // bug: bucle infinito
-        
         int l, m, r, resultado;
         
         l = 0;
         r = a.length-1;
+        m = (l+r) / 2;
         resultado = -1;
         
-        while (l <= r) {
+        while (l <= r && k != a[m]) {
             m = (l+r) / 2;
             
             if (k == a[m]) {
