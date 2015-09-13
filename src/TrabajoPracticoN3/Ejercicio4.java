@@ -51,7 +51,7 @@ public class Ejercicio4 {
 
     /**
      * Convierte un índice al año determinado.
-     * 
+     *
      * @param pos índice de entrada
      * @return año en formato común
      */
@@ -118,9 +118,10 @@ public class Ejercicio4 {
      * @param expediente
      */
     public static void verExpediente(int[][] expediente) {
+        System.out.println("2000\t2001\t2002\t2003\t2004\t2005\t2006\t2007\t2008\t2009\t2010\t2011\t2012\t2013\t2014");
         for (int i = 0; i < expediente.length; i++) {
             for (int j = 0; j < expediente[0].length; j++) {
-                System.out.printf("%4d", expediente[i][j]);
+                System.out.printf("%4d\t", expediente[i][j]);
             }
             System.out.println();
         }
@@ -139,7 +140,7 @@ public class Ejercicio4 {
 
     /**
      * Determina el promedio por mes de expedientes.
-     * 
+     *
      * @param expediente arreglo de entrada
      * @param suma suma de expedientes en todos los años
      * @return promedio promedio de expedientes
@@ -150,7 +151,7 @@ public class Ejercicio4 {
 
     /**
      * Calcula la suma por mes de todos los años de expedientes presentes.
-     * 
+     *
      * @param expediente arreglo de entrada
      * @param mes mes a calcular
      * @return suma de expedientes
@@ -203,6 +204,28 @@ public class Ejercicio4 {
     }
 
     /**
+     * Este módulo determina el mes indicial en que hubo menor cantidad de expedientes.
+     *
+     * @param expediente tabla de expedientes
+     * @return posición indicial del mes con menor cantidad de expedientes
+     */
+    public static int mesMenosExpedientes(int[][] expediente) {
+        int menorMes, i, pos;
+
+        menorMes = sumaExpedientesPorMes(expediente, 0);
+        pos = 0;
+
+        for (i = 1; i < expediente.length; i++) {
+            if (menorMes > sumaExpedientesPorMes(expediente, i)) {
+                menorMes = sumaExpedientesPorMes(expediente, i);
+                pos = i;
+            }
+        }
+
+        return pos;
+    }
+
+    /**
      * Visualiza mes a mes el año seleccionado.
      *
      * @param expediente arreglo de entrada
@@ -219,7 +242,7 @@ public class Ejercicio4 {
 
     /**
      * Calcula la cantidad de expedientes cuyo valor supera cierta cantidad definida por el usuario.
-     * 
+     *
      * @param expediente arreglo de entrada
      * @param cantidad condición definida por el usuario
      * @return cantidad de expedientes en total
@@ -242,7 +265,7 @@ public class Ejercicio4 {
 
     /**
      * Calcula la cantidad de expedientes por año que superan o iguales cierta cantidad definida por el usuario.
-     * 
+     *
      * @param expediente arreglo de entrada
      * @param año año a revisar
      * @param cantidad cantidad máxima de expedientes
@@ -288,7 +311,7 @@ public class Ejercicio4 {
 
     /**
      * Calcula la varianza de los expedientes para un año determinado.
-     * 
+     *
      * @param expediente arreglo de entrada
      * @param año año a calcular
      * @return varianza para el año fijado
@@ -310,7 +333,7 @@ public class Ejercicio4 {
 
     /**
      * Calcula los desvíos que cumplen con cierta condición.
-     * 
+     *
      * @param expediente arreglo de entrada
      * @param M valor del desvío a superar
      */
@@ -342,19 +365,22 @@ public class Ejercicio4 {
             System.out.println("2: Suma de expedientes en un año.");
             System.out.println("3: Promedio de expedientes en un año.");
             System.out.println("4: Calcular mes con mayor cantidad de expedientes.");
-            System.out.println("5: Visualizar producción mensual.");
-            System.out.println("6: Obtener la mediana.");
-            System.out.println("7: Varianza de expedientes procesados.");
-            System.out.println("8: Años para los cuales el desvío standar es superior a M.");
-            System.out.println("9: Promedio de expedientes en un mes entre 2000-2014.");
-            System.out.println("10: Promedio entre dos años.");
-            System.out.println("11: Cantidad de meses para los cuales se procesaron más de X expedientes en un año.");
-            System.out.println("12: Cantidad de meses para los cuales se procesaron más de X expedientes en todos los años.");
-            System.out.println("13: Determina para un año X si se procesaron más de Y expedientes.");
+            System.out.println("5: Calcular mes con menor cantidad de expedientes.");
+            System.out.println("6: Visualizar producción mensual.");
+            System.out.println("7: Obtener la mediana.");
+            System.out.println("8: Varianza de expedientes procesados.");
+            System.out.println("9: Años para los cuales el desvío standar es superior a M.");
+            System.out.println("10: Promedio de expedientes en un mes entre 2000-2014.");
+            System.out.println("11: Promedio entre dos años.");
+            System.out.println("12: Cantidad de meses para los cuales se procesaron más de X expedientes en un año.");
+            System.out.println("13: Cantidad de meses para los cuales se procesaron más de X expedientes en todos los años.");
+            System.out.println("14: Determina para un año X si se procesaron más de Y expedientes.");
             System.out.print("Ingrese opción, 0 para terminar: ");
             opcion = TecladoIn.readLineInt();
 
             switch(opcion) {
+                case 0:
+                    break;
                 case 1:
                     verExpediente(expediente);
                     break;
@@ -381,6 +407,9 @@ public class Ejercicio4 {
                     System.out.println("El mes con mayor cantidad de expedientes fue " + posAMes(mesMasExpedientes(expediente)));
                     break;
                 case 5:
+                    System.out.println("El mes con menor cantidad de expedientes fue " + posAMes(mesMenosExpedientes(expediente)));
+                    break;
+                case 6:
                     System.out.print("Ingrese año: ");
                     año1 = TecladoIn.readLineInt();
                     indice1 = añoAIndice(año1);
@@ -389,7 +418,7 @@ public class Ejercicio4 {
                     } else {
                         System.out.println("Año inválido. Debe estar entre 2000 y 2014.");
                     }
-                case 6:
+                case 7:
                     System.out.print("Ingrese año: ");
                     año1 = TecladoIn.readLineInt();
                     indice1 = añoAIndice(año1);
@@ -398,7 +427,7 @@ public class Ejercicio4 {
                     } else {
                         System.out.println("Año inválido. Debe estar entre 2000 y 2014.");
                     }
-                case 7:
+                case 8:
                     System.out.print("Ingrese año: ");
                     año1 = TecladoIn.readLineInt();
                     indice1 = añoAIndice(año1);
@@ -408,12 +437,12 @@ public class Ejercicio4 {
                         System.out.println("Año inválido. Debe estar entre 2000 y 2014.");
                     }
                     break;
-                case 8:
+                case 9:
                     System.out.print("Ingrese parámetro M: ");
                     M = TecladoIn.readLineInt();
                     desviosMayores(expediente, M);
                     break;
-                case 9:
+                case 10:
                     System.out.print("Ingrese mes para calcular el promedio de expedientes: ");
                     mes = TecladoIn.readLineInt();
                     if (mes >= 1 && mes <= 12) {
@@ -422,7 +451,7 @@ public class Ejercicio4 {
                         System.out.println("Mes inválido. Debe estar entre 1 y 12.");
                     }
                     break;
-                case 10:
+                case 11:
                     System.out.print("Ingrese primer año: ");
                     año1 = TecladoIn.readLineInt();
                     System.out.print("Ingrese segundo año: ");
@@ -437,7 +466,7 @@ public class Ejercicio4 {
                         System.out.println("Año inválido. Debe estar entre 2000 y 2014.");
                     }
                     break;
-                case 11:
+                case 12:
                     System.out.print("Ingrese año: ");
                     año1 = TecladoIn.readLineInt();
                     indice1 = añoAIndice(año1);
@@ -449,12 +478,12 @@ public class Ejercicio4 {
                         System.out.println("Año inválido. Debe estar entre 2000 y 2014.");
                     }
                     break;
-                case 12:
+                case 13:
                     System.out.print("Ingrese cantidad de expedientes: ");
                     X = TecladoIn.readLineInt();
                     System.out.println("Cantidad de meses: " + cantidadExpedientesTotal(expediente, X));
                     break;
-                case 13:
+                case 14:
                     System.out.print("Ingrese año: ");
                     año1 = TecladoIn.readLineInt();
                     indice1 = añoAIndice(año1);
