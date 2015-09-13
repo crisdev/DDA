@@ -1,0 +1,72 @@
+/*
+ * Una empresa de alquiler de autos almacena la información de los autos que
+ * tiene para alquilar de la siguiente manera: cada auto está identificado
+ * por su patente (String de 6 caractere), número registrado en el odómetro,
+ * modelo y si está disponible o no. Aplicando los conceptos vistos en teoría,
+ * implementar en Java la clase Auto de acuerdo a la especificación.
+ */
+package TrabajoPracticoN4;
+
+/**
+ *
+ * @author Cristian
+ * @version 12/09/2015
+ */
+public class Auto {
+    private String patente;
+    private int cuentaKm;
+    private String modelo;
+    private boolean disponible;
+    
+// Constructores
+    public Auto(String pat) {
+        patente = pat;
+        disponible = true;
+    }
+    
+    public Auto(String pat, int km, String mod, boolean dispo) {
+        this(pat);
+        cuentaKm = km;
+        modelo = mod;
+    }
+    
+// Modificadores
+    public void setCuentaKm(int km) {
+        cuentaKm = km;
+    }
+    
+    public void setModelo(String mod) {
+        modelo = mod;
+    }
+    
+    public void setDisponible(boolean disp) {
+        disponible = disp;
+    }
+    
+// Observadores
+    public String getPatente() {
+        return patente;
+    }
+    
+    public int getCuentaKm() {
+        return cuentaKm;
+    }
+    
+    public String getModelo() {
+        return modelo;
+    }
+    
+    public boolean getDisponible() {
+        return disponible;
+    }
+    
+    public String aCadena() {
+        return "Modelo: " + modelo + "\nPatente " + patente + "\nDisponibble: " +
+                disponible + "\nKilómetros: " + cuentaKm;
+    }
+    
+    public boolean igual(Auto a) {
+        return cuentaKm == a.cuentaKm && disponible == a.disponible &&
+                modelo.equalsIgnoreCase(a.modelo) && patente.equalsIgnoreCase(a.patente);
+    }
+}

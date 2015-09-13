@@ -22,7 +22,7 @@ public class testEspecie {
         int años, i;
         boolean laSupera;
 
-        i        = 1;
+        i = 1;
         laSupera = false;
 
         Especie caballo     = new Especie("Caballo", 30, 20);

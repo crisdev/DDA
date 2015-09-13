@@ -68,7 +68,7 @@ public class Racional {
         Racional c;
 
         resto = denominador - r.denominador;
-        
+
         if (resto == 0) {
             c = null;
         } else {
@@ -112,22 +112,21 @@ public class Racional {
     /**
      * Calcula el máximo común divisor entre dos números utilizando
      * el algoritmo de Euclides.
-     * 
+     *
      * @param a numerador
      * @param b denominador
      * @return máximo común divisor entre a y b
      */
     private int mcd(int a, int b) {
         int tmp;
-        
+
         while (b != 0) {
             tmp = b;
             b = a % b;
-            
+
             a = tmp;
         }
 
         return a;
     }
-
 }

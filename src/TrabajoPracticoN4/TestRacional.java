@@ -5,7 +5,6 @@
 package TrabajoPracticoN4;
 
 import Utiles.TecladoIn;
-import sun.java2d.xr.DirtyRegion;
 
 /**
  *
@@ -17,10 +16,10 @@ public class TestRacional {
     public static void main(String[] args) {
         byte opcion;
         int numerador, denominador;
-        
+
         Racional r1 = new Racional(1,1);
-        Racional r2 = new Racional(1,1);
-        
+        Racional r2;
+
         do {
             menu();
             opcion = TecladoIn.readLineByte();
@@ -42,13 +41,13 @@ public class TestRacional {
                     break;
                 case 6:
                     r2 = creaRacional();
-                    
+
                     if(r1.igual(r2)) {
                         System.out.println("Los racionales son iguales.");
                     } else {
                         System.out.println("Los racionales son distintos.");
                     }
-                    
+
                     break;
                 case 7:
                     System.out.print("Ingrese numerador: ");
@@ -62,30 +61,26 @@ public class TestRacional {
                     break;
                 case 9:
                     r2 = creaRacional();
-                    
                     r1 = r1.sumar(r2);
-                    
+
                     System.out.println("Resultado: " + r1.aCadena());
                     break;
                 case 10:
                     r2 = creaRacional();
-                    
                     r1 = r1.restar(r2);
-                    
+
                     System.out.println("Resultado: " + r1.aCadena());
                     break;
                 case 11:
                     r2 = creaRacional();
-                    
                     r1 = r1.multiplicar(r2);
-                    
+
                     System.out.println("Resultado: " + r1.aCadena());
                     break;
                 case 12:
                     r2 = creaRacional();
-                    
                     r1 = r1.dividir(r2);
-                    
+
                     System.out.println("Resultado: " + r1.aCadena());
                     break;
                 case 13:
@@ -99,9 +94,9 @@ public class TestRacional {
             }
         } while (opcion != 14);
     }
-    
+
     public static void menu() {
-        System.out.println("-----------------------------");  
+        System.out.println("-----------------------------");
         System.out.println();
         System.out.println("1. - Crear un número racional.");
         System.out.println("2. - Obtener numerador.");
@@ -119,24 +114,24 @@ public class TestRacional {
         System.out.println("14.- Terminar.");
         System.out.print("Ingrese la opción deseada: ");
     }
-    
+
     private static Racional creaRacional() {
         int numerador, denominador;
         Racional nuevo;
-        
+
         System.out.print("Ingrese numerador: ");
         numerador = TecladoIn.readLineInt();
         System.out.print("Ingrese denominador: ");
         denominador = TecladoIn.readLineInt();
-        
+
         while (denominador == 0) {
             System.out.println("Denominador nulo!");
             System.out.print("Ingrese nuevo denominador: ");
             denominador = TecladoIn.readLineInt();
         }
-        
+
         nuevo = new Racional(numerador, denominador);
-        
+
         return nuevo;
     }
 }
