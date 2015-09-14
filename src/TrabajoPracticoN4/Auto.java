@@ -13,10 +13,10 @@ package TrabajoPracticoN4;
  * @version 12/09/2015
  */
 public class Auto {
-    private String patente;
     private int cuentaKm;
-    private String modelo;
     private boolean disponible;
+    private String patente;
+    private String modelo;
     
 // Constructores
     public Auto(String pat) {
@@ -25,9 +25,10 @@ public class Auto {
     }
     
     public Auto(String pat, int km, String mod, boolean dispo) {
-        this(pat);
+        patente = pat;
         cuentaKm = km;
         modelo = mod;
+        disponible = dispo;
     }
     
 // Modificadores
@@ -61,8 +62,16 @@ public class Auto {
     }
     
     public String aCadena() {
-        return "Modelo: " + modelo + "\nPatente " + patente + "\nDisponibble: " +
-                disponible + "\nKilómetros: " + cuentaKm;
+        String texto;
+        
+        if (disponible) {
+            texto = "Sí";
+        } else {
+            texto = "No";
+        }
+        
+        return "Modelo: " + modelo + "\nPatente: " + patente + "\nDisponible: " +
+                texto + "\nKilómetros recorridos: " + cuentaKm;
     }
     
     public boolean igual(Auto a) {
