@@ -21,7 +21,7 @@ public class Matriz {
     private int[][] matriz;
 
     /**
-     * Método Constructor: genera una matriz cuadrada aleatoria.
+     * Método Constructor: genera una matriz cuadrada.
      *
      * @param n tamaño de la matriz
      */
@@ -58,7 +58,7 @@ public class Matriz {
 
     /**
      * Suma dos matrices.
-     * 
+     *
      * @param nueva matriz que se desea sumar
      * @return matriz sumada
      */
@@ -82,10 +82,10 @@ public class Matriz {
 
         return suma;
     }
-    
+
     /**
      * Resta dos matrices.
-     * 
+     *
      * @param nueva matriz que se desea restar
      * @return matriz restada
      */
@@ -109,10 +109,10 @@ public class Matriz {
 
         return resta;
     }
-    
+
     /**
      * Multiplica una matriz por un escalar.
-     * 
+     *
      * @param entero valor entero que multiplicará a la matriz
      * @return matriz multiplcada por entero
      */
@@ -123,19 +123,19 @@ public class Matriz {
         int columnas = matriz[0].length;
 
         Matriz producto = new Matriz(filas, columnas);
-        
+
         for (i = 0; i < filas; i++) {
             for (j = 0; j < columnas; j++) {
                 producto.asignaValor(i, j, matriz[i][j] * entero);
             }
         }
-        
+
         return producto;
     }
 
     /**
      * Multiplica dos matrices.
-     * 
+     *
      * @param nueva matriz a multiplicar
      * @return matriz multiplicada
      */
@@ -149,21 +149,21 @@ public class Matriz {
             for (i = 0; i < nroFilas; i++) {
                 for (j = 0; j < nroColumnas; j++) {
                     sumaTemporal = 0;
-                
+
                     for (k = 0; k < matriz[0].length; k++) {
                         sumaTemporal += muestraValor(i, k) * nueva.muestraValor(k, j);
                     }
-                
+
                     producto.asignaValor(i, j, sumaTemporal);
                 }
             }
         } else {
             System.out.println("La operación no se puede realizar.");
         }
-        
+
         return producto;
     }
-    
+
     /**
      * Modifica el valor de un elemento de la matriz.
      *
@@ -178,10 +178,10 @@ public class Matriz {
             System.out.println("Posición inexistente.");
         }
     }
-    
+
     /**
      * Copia (clona) una matriz.
-     * 
+     *
      * @return matriz clonada
      */
     public Matriz clonar() {
@@ -189,19 +189,19 @@ public class Matriz {
         int nroFilas = matriz.length;
         int nroCol   = matriz[0].length;
         Matriz matrizClonada = new Matriz(nroFilas, nroCol);
-        
+
         for (i = 0; i < nroFilas; i++) {
             for (j = 0; j < nroCol; j++) {
                 matrizClonada.asignaValor(i, j, matriz[i][j]);
             }
         }
-        
+
         return matrizClonada;
     }
 
     /**
-     * Modifica un objeto matriz para inicializarla con valores aleatorios de 0
-     * a 10.
+     * Modifica un objeto matriz para inicializarla con valores aleatorios
+     * de 0 a 10.
      */
     public void generarNrosAleatorios() {
         Random r = new Random();
@@ -215,7 +215,7 @@ public class Matriz {
 
     /**
      * Genera una nueva matriz transpuesta.
-     * 
+     *
      * @return matriz transpuesta
      */
     public Matriz transponer() {
@@ -236,41 +236,79 @@ public class Matriz {
 
 // Métodos auxiliares
 
+    /**
+     * Verifica si es posible realizar una operación básica entre matrices
+     * como suma o resta.
+     *
+     * @param nueva matriz que se desea verificar
+     * @return verdadero si es posible realizar la operación
+     */
     private boolean verificarOperacion(Matriz nueva) {
         boolean esPosible;
-        
+
         esPosible = false;
         if (matriz.length == nueva.obtenerFilas() &&
             matriz[0].length == nueva.obtenerColumnas()) {
             esPosible = true;
         }
-        
+
         return esPosible;
     }
-    
+
+    /**
+     * Verifica si es posible realizar el producto entre dos matrices.
+     *
+     * @param nueva matriz a verificar
+     * @return verdadero si las matrices se pueden multiplicar
+     */
     private boolean verificarProducto(Matriz nueva) {
         boolean esPosible;
-        
+
         esPosible = false;
         if (matriz[0].length == nueva.obtenerFilas()) {
             esPosible = true;
         }
-        
+
         return esPosible;
     }
-    
+
+    /**
+     * Muestra el elemento de una matriz.
+     *
+     * @param i fila
+     * @param j columna
+     * @return valor del elemento
+     */
     private int muestraValor(int i, int j) {
         return matriz[i][j];
     }
 
+    /**
+     * Modifica un elemento de una matriz. Método interno que no modifica el
+     * índice de inserción.
+     *
+     * @param i fila
+     * @param j columna
+     * @param valor valor nuevo
+     */
     private void asignaValor(int i, int j, int valor) {
         matriz[i][j] = valor;
     }
-    
+
+    /**
+     * Obtiene el número de filas de la matriz.
+     *
+     * @return cantidad de filas
+     */
     private int obtenerFilas() {
         return matriz.length;
     }
-    
+
+    /**
+     * Obtiene el número de columnas de la matriz.
+     *
+     * @return cantidad de columnas
+     */
     private int obtenerColumnas() {
         return matriz[0].length;
     }
