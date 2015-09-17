@@ -17,7 +17,7 @@ public class Racional {
         numerador = n;
         denominador = d;
 
-        if (denominador == 0) {
+        if (denominador == 0) { // no permitir denominadores nulos
             denominador = 1;
         }
     }
@@ -58,7 +58,7 @@ public class Racional {
     public Racional sumar(Racional r) {
         Racional c;
         int numeradorSuma, denominadorSuma, n1, n2;
-        
+
         denominadorSuma = denominador * r.denominador;
         n1 = numerador*(denominadorSuma / denominador);
         n2 = r.numerador*(denominadorSuma / r.denominador);
@@ -95,22 +95,23 @@ public class Racional {
         Racional c = r;
 
         if (r.denominador > 0) {
-            c = new Racional (numerador / r.numerador, denominador / r.denominador);
+            c = new Racional (numerador * r.denominador, denominador * r.numerador);
         }
 
         return c;
     }
 
     public void simplificar() {
-        int mcd, den;
+        int mcd;
 
         mcd = mcd(numerador, denominador);
-        den = denominador / mcd;
+        numerador = numerador / mcd;
+        denominador = denominador / mcd;
 
-        if (den == 1) {
-            System.out.println(numerador / mcd);
+        if (denominador == 1) {
+            System.out.println(numerador);
         } else {
-            System.out.println(numerador / mcd + "/" + den);
+            System.out.println(numerador + "/" + denominador);
         }
     }
 
