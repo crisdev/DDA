@@ -3,7 +3,7 @@
  * 1. Ingresar un auto: Permitir al usuario realizar la carga de uno o más autos.
  * El usuario puede ingresar a esta opción de menú reiteradas veces.
  */
-package trabajoPracticoN4.test;
+package trabajoPracticoN4.tests;
 
 import trabajoPracticoN4.clases.Auto;
 import utiles.TecladoIn;

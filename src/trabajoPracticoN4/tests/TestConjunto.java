@@ -2,7 +2,7 @@
  * Escribir en Java una clase TestConjunto para probar todos los métodos
  * implementados.
  */
-package trabajoPracticoN4.test;
+package trabajoPracticoN4.tests;
 
 import trabajoPracticoN4.clases.Conjunto;
 

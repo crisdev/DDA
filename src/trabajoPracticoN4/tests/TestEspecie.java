@@ -1,5 +1,5 @@
 /*
- * Implementar la clase testEspecie que permita probar la funcionalidad
+ * Implementar la clase TestEspecie que permita probar la funcionalidad
  * del TDA Especie. Es decir, cargar los datos de una o más especies, consultarlas,
  * modificarlas y aplicar las operaciones propias del tipo.
  *
@@ -7,7 +7,7 @@
  * y la especie elefante tiene una población de 10 y una tasa de crecimiento de 35%.
  * ¿Cuántos años le llevará a la población elefante superar a la especie rinoceronte?
  */
-package trabajoPracticoN4.test;
+package trabajoPracticoN4.tests;
 
 import trabajoPracticoN4.clases.Especie;
 import utiles.TecladoIn;
@@ -17,7 +17,7 @@ import utiles.TecladoIn;
  * @author Cristian
  * @version 12/09/2015
  */
-public class testEspecie {
+public class TestEspecie {
 
     public static void main(String[] args) {
         int años, i;

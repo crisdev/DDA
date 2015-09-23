@@ -1,7 +1,7 @@
 /*
  *
  */
-package trabajoPracticoN4.test;
+package trabajoPracticoN4.tests;
 
 import trabajoPracticoN4.clases.Matriz;
 
@@ -19,8 +19,10 @@ public class TestMatriz {
 
         // Generar automáticamente matrices aleatorias
         a.generarNrosAleatorios();
+        System.out.println("A:");
         a.mostrarMatriz();
         b.generarNrosAleatorios();
+        System.out.println("B:");
         b.mostrarMatriz();
 
         // Producto de dos matrices
@@ -31,7 +33,8 @@ public class TestMatriz {
         a.mostrarMatriz();
 
         // Suma de matrices
-        a.suma(b).mostrarMatriz();
+        System.out.println("Suma de matrices:");
+        a.suma(c).mostrarMatriz();
 
         // Copia de matrices
         c = a.clonar();

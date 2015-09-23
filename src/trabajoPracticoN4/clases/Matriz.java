@@ -18,7 +18,9 @@ import java.util.Random;
  */
 public class Matriz {
 
-    private int[][] matriz;
+    private final int[][] matriz;
+    private final int fil;  // Cantidad de filas de la matriz
+    private final int col;  // Cantidad de columnas de la matriz
 
     /**
      * Método Constructor: genera una matriz cuadrada.
@@ -26,7 +28,10 @@ public class Matriz {
      * @param n tamaño de la matriz
      */
     public Matriz(int n) {
-        matriz = new int[n][n];
+        fil = n;
+        col = n;
+        matriz = new int[fil][col];
+ 
     }
 
     /**
@@ -36,19 +41,19 @@ public class Matriz {
      * @param m cantidad de columnas de la matriz
      */
     public Matriz(int n, int m) {
-        matriz = new int[n][m];
+        fil = n;
+        col = m;
+        matriz = new int[fil][col];
     }
 
     /**
      * Muestra por pantalla la matriz creada.
      */
     public void mostrarMatriz() {
-        int nroFilas = matriz.length;
-        int nroColumnas = matriz[0].length;
         int i, j;
 
-        for (i = 0; i < nroFilas; i++) {
-            for (j = 0; j < nroColumnas; j++) {
+        for (i = 0; i < fil; i++) {
+            for (j = 0; j < col; j++) {
                 System.out.printf("%4d ", matriz[i][j]);
             }
             System.out.println();
@@ -65,15 +70,12 @@ public class Matriz {
     public Matriz suma(Matriz nueva) {
         int i, j;
 
-        int filas = matriz.length;
-        int columnas = matriz[0].length;
-
-        Matriz suma = new Matriz(filas, columnas);
+        Matriz suma = new Matriz(fil, col);
 
         if (verificarOperacion(nueva)) {
-            for (i = 0; i < filas; i++) {
-                for (j = 0; j < columnas; j++) {
-                    suma.asignaValor(i, j, matriz[i][j] + nueva.muestraValor(i, j));
+            for (i = 0; i < fil; i++) {
+                for (j = 0; j < col; j++) {
+                    suma.matriz[i][j] = matriz[i][j] + nueva.matriz[i][j];
                 }
             }
         } else {
@@ -92,15 +94,12 @@ public class Matriz {
     public Matriz resta(Matriz nueva) {
         int i, j;
 
-        int filas = matriz.length;
-        int columnas = matriz[0].length;
-
-        Matriz resta = new Matriz(filas, columnas);
+        Matriz resta = new Matriz(fil, col);
 
         if (verificarOperacion(nueva)) {
-            for (i = 0; i < filas; i++) {
-                for (j = 0; j < columnas; j++) {
-                    resta.asignaValor(i, j, matriz[i][j] - nueva.muestraValor(i, j));
+            for (i = 0; i < fil; i++) {
+                for (j = 0; j < col; j++) {
+                    resta.matriz[i][j] = matriz[i][j] - nueva.matriz[i][j];
                 }
             }
         } else {
@@ -119,14 +118,11 @@ public class Matriz {
     public Matriz productoEscalar(int entero) {
         int i, j;
 
-        int filas = matriz.length;
-        int columnas = matriz[0].length;
+        Matriz producto = new Matriz(fil, col);
 
-        Matriz producto = new Matriz(filas, columnas);
-
-        for (i = 0; i < filas; i++) {
-            for (j = 0; j < columnas; j++) {
-                producto.asignaValor(i, j, matriz[i][j] * entero);
+        for (i = 0; i < fil; i++) {
+            for (j = 0; j < col; j++) {
+                producto.matriz[i][j] = matriz[i][j] * entero;
             }
         }
 
@@ -141,20 +137,19 @@ public class Matriz {
      */
     public Matriz producto(Matriz nueva) {
         int i, j, k, sumaTemporal;
-        int nroFilas    = matriz.length;
-        int nroColumnas = nueva.obtenerColumnas();
-        Matriz producto = new Matriz(nroFilas, nroColumnas);
+
+        Matriz producto = new Matriz(fil, nueva.col);
 
         if (verificarProducto(nueva)) {
-            for (i = 0; i < nroFilas; i++) {
-                for (j = 0; j < nroColumnas; j++) {
+            for (i = 0; i < fil; i++) {
+                for (j = 0; j < nueva.col; j++) {
                     sumaTemporal = 0;
 
-                    for (k = 0; k < matriz[0].length; k++) {
-                        sumaTemporal += muestraValor(i, k) * nueva.muestraValor(k, j);
+                    for (k = 0; k < col; k++) {
+                        sumaTemporal += matriz[i][k] * nueva.matriz[k][j];
                     }
 
-                    producto.asignaValor(i, j, sumaTemporal);
+                    producto.matriz[i][j] = sumaTemporal;
                 }
             }
         } else {
@@ -172,7 +167,7 @@ public class Matriz {
      * @param valor valor a fijar
      */
     public void modificaValor(int i, int j, int valor) {
-        if (i >= 0 && i < matriz.length && j >= 0 && j < matriz[0].length) {
+        if (i >= 0 && i < fil && j >= 0 && j < col) {
             matriz[i-1][j-1] = valor;
         } else {
             System.out.println("Posición inexistente.");
@@ -186,13 +181,11 @@ public class Matriz {
      */
     public Matriz clonar() {
         int i, j;
-        int nroFilas = matriz.length;
-        int nroCol   = matriz[0].length;
-        Matriz matrizClonada = new Matriz(nroFilas, nroCol);
+        Matriz matrizClonada = new Matriz(fil, col);
 
-        for (i = 0; i < nroFilas; i++) {
-            for (j = 0; j < nroCol; j++) {
-                matrizClonada.asignaValor(i, j, matriz[i][j]);
+        for (i = 0; i < fil; i++) {
+            for (j = 0; j < col; j++) {
+                matrizClonada.matriz[i][j] = matriz[i][j];
             }
         }
 
@@ -206,8 +199,8 @@ public class Matriz {
     public void generarNrosAleatorios() {
         Random r = new Random();
 
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[0].length; j++) {
+        for (int i = 0; i < fil; i++) {
+            for (int j = 0; j < col; j++) {
                 matriz[i][j] = r.nextInt(11);
             }
         }
@@ -220,14 +213,12 @@ public class Matriz {
      */
     public Matriz transponer() {
         int i, j;
-        int filasMatriz = matriz.length;
-        int columnasMatriz = matriz[0].length;
 
-        Matriz transpuesta = new Matriz(columnasMatriz, filasMatriz);
+        Matriz transpuesta = new Matriz(col, fil);
 
-        for (i = 0; i < filasMatriz; i++) {
-            for (j = 0; j < columnasMatriz; j++) {
-                transpuesta.asignaValor(j, i, matriz[i][j]);
+        for (i = 0; i < fil; i++) {
+            for (j = 0; j < col; j++) {
+                transpuesta.matriz[i][j] = matriz[i][j];
             }
         }
 
@@ -247,8 +238,7 @@ public class Matriz {
         boolean esPosible;
 
         esPosible = false;
-        if (matriz.length == nueva.obtenerFilas() &&
-            matriz[0].length == nueva.obtenerColumnas()) {
+        if (fil == nueva.fil && col == nueva.col) {
             esPosible = true;
         }
 
@@ -265,51 +255,10 @@ public class Matriz {
         boolean esPosible;
 
         esPosible = false;
-        if (matriz[0].length == nueva.obtenerFilas()) {
+        if (col == nueva.fil) {
             esPosible = true;
         }
 
         return esPosible;
-    }
-
-    /**
-     * Muestra el elemento de una matriz.
-     *
-     * @param i fila
-     * @param j columna
-     * @return valor del elemento
-     */
-    private int muestraValor(int i, int j) {
-        return matriz[i][j];
-    }
-
-    /**
-     * Modifica un elemento de una matriz. Método interno que no modifica el
-     * índice de inserción.
-     *
-     * @param i fila
-     * @param j columna
-     * @param valor valor nuevo
-     */
-    private void asignaValor(int i, int j, int valor) {
-        matriz[i][j] = valor;
-    }
-
-    /**
-     * Obtiene el número de filas de la matriz.
-     *
-     * @return cantidad de filas
-     */
-    private int obtenerFilas() {
-        return matriz.length;
-    }
-
-    /**
-     * Obtiene el número de columnas de la matriz.
-     *
-     * @return cantidad de columnas
-     */
-    private int obtenerColumnas() {
-        return matriz[0].length;
     }
 }

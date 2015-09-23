@@ -2,7 +2,7 @@
  * Escribir un programa testRacional que permita cargar y operar con racionales.
  * Debe contar con un menú de opciones para probar toda la funcionalidad del TDA.
  */
-package trabajoPracticoN4.test;
+package trabajoPracticoN4.tests;
 
 import trabajoPracticoN4.clases.Racional;
 import utiles.TecladoIn;

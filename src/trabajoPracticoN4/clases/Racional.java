@@ -57,7 +57,7 @@ public class Racional {
 // Propias del tipo
     public Racional sumar(Racional r) {
         Racional c;
-        int numeradorSuma, denominadorSuma, n1, n2;
+        int denominadorSuma, n1, n2;
 
         denominadorSuma = denominador * r.denominador;
         n1 = numerador*(denominadorSuma / denominador);
@@ -117,22 +117,22 @@ public class Racional {
 
     /**
      * Calcula el máximo común divisor entre dos números utilizando
-     * el algoritmo de Euclides.
+     * el algoritmo de Euclides. Precondición: a >= b
      *
      * @param a numerador
      * @param b denominador
-     * @return máximo común divisor entre a y b
+     * @return máximo divisor común entre a y b
      */
     private int mcd(int a, int b) {
-        int tmp;
+        int r;
 
-        while (b != 0) {
-            tmp = b;
-            b = a % b;
-
-            a = tmp;
+        r = a % b;
+        while (r != 0) {
+            a = b;
+            b = r;
+            r = a % b;
         }
 
-        return a;
+        return b;
     }
 }

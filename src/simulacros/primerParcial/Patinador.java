@@ -56,8 +56,12 @@ public class Patinador {
     public char getCategoria() {
         return categoria;
     }
+    
+    public boolean equals(Patinador nuevo) {
+        return apellido.equalsIgnoreCase(nuevo.apellido) && nombre.equalsIgnoreCase(nuevo.nombre) && DNI.equalsIgnoreCase(nuevo.DNI) &&
+               edad == nuevo.edad && categoria == nuevo.categoria;
+    }
 
-    @Override
     public String toString() {
         return "Nombre: " + nombre + "\nApellido: " + apellido + "\nDNI: " +
                 DNI + "\nEdad: " + edad + "\nCategoría: " + categoria;
@@ -81,9 +85,9 @@ public class Patinador {
     }
 
     public void setCategoria(char cat) {
+        // Almacena el caracter en mayúscula
         if (cat >= 'a') {
             categoria = (char) ('A' + (cat - 'a'));
-            System.out.println("Categoría almacenada: " + categoria);
         } else {
             categoria = cat;
         }
