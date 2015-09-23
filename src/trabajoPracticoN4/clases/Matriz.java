@@ -31,7 +31,6 @@ public class Matriz {
         fil = n;
         col = n;
         matriz = new int[fil][col];
- 
     }
 
     /**
@@ -235,14 +234,7 @@ public class Matriz {
      * @return verdadero si es posible realizar la operación
      */
     private boolean verificarOperacion(Matriz nueva) {
-        boolean esPosible;
-
-        esPosible = false;
-        if (fil == nueva.fil && col == nueva.col) {
-            esPosible = true;
-        }
-
-        return esPosible;
+        return fil == nueva.fil && col == nueva.col;
     }
 
     /**
@@ -252,13 +244,6 @@ public class Matriz {
      * @return verdadero si las matrices se pueden multiplicar
      */
     private boolean verificarProducto(Matriz nueva) {
-        boolean esPosible;
-
-        esPosible = false;
-        if (col == nueva.fil) {
-            esPosible = true;
-        }
-
-        return esPosible;
+        return col == nueva.fil;
     }
 }
