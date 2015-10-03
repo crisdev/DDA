@@ -1,0 +1,164 @@
+/*
+ * Implementar un TDA TestPersona, que permita cargar un conjunto de personas
+ * (física y jurídicas).
+ * Implementar los siguientes métodos:
+ * - Método para recuperar aquellas personas físicas cuyo nombre contenga la cadena "SUAREZ"
+ * - Método de OrdenamientoIsertionSort() para ordenar el arreglo de personas según su CUIT-CUIL
+ * - Método de OrdenamientoSelectionSort() para ordenar el arreglo de personas según su CUIT-CUIL
+ * - Método de OrdenamientoBurbujaSort() para ordenar el arreglo de personas según el CUIT-CUIL
+ * - Método de BúquedaSecuencial() para buscar un elemento en un arreglo ordenado de CUIT-CUIL
+ * - Método de BúqeudaBinaria() para buscar un elemento en un arreglo ordenado de CUIT-CUIL
+ * - Método para recuperar las personas físicas de una localidad determinada (dado su código postal)
+ * - Método para recuperar las personas jurídicas de una localidad determinada (dado su código postal)
+ *   y calle determinada
+ */
+package trabajo;
+
+import utiles.Aleatorio;
+import utiles.TecladoIn;
+
+/**
+ *
+ * @author Cristian
+ */
+public class TestPersona {
+
+    public static void main(String[] args) {
+        Persona[] arreglo = new Persona[5];
+
+        for (int i = 0; i < arreglo.length; i++) {
+            CuitCuil nuevo = new CuitCuil(23, (long) Aleatorio.intAleatorio(100,200));
+            arreglo[i] = new Persona(nuevo, Aleatorio.stringAleatorio(10), Aleatorio.stringAleatorio(4), i, "8300", "Neuquén");
+            System.out.println("==========");
+            System.out.println(arreglo[i]);
+        }
+
+        System.out.println("\n\n\nORDENADO");
+        //OrdenamientoInsertionSort(arreglo);
+        OrdenamientoSelectionSort(arreglo);
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.println("===========");
+            System.out.println(arreglo[i]);
+
+        }
+
+    }
+
+    /**
+     * Imprime por pantalla la información almacenada sobre cualquier
+     * persona cuyo nombre sea "SUAREZ".
+     *
+     * @param x arreglo de personas almacenadas
+     */
+    public static void Suarez(Persona[] x) {
+        int tipo;
+        String nombre;
+
+        nombre = "Suarez";
+        for (int i = 0; i < x.length; i++) {
+            tipo = x[i].getPersona().getTipo();
+
+            if (tipo == 20 || tipo == 23 || tipo == 27) {
+                if (nombre.equalsIgnoreCase(x[i].getNombre())) {
+                    System.out.println(x[i]);
+                }
+            }
+        }
+    }
+
+    /**
+     * Crea un nuevo objeto CUIT/CUIL.
+     *
+     * @return objeto CUIT/CUIL
+     */
+    public static CuitCuil ingresarCuitCuil() {
+        CuitCuil nuevo;
+        byte tipo;
+        int DNI;
+        boolean esValido;
+
+        do {
+            System.out.println("Ingrese tipo de identificación: ");
+            tipo = TecladoIn.readLineByte();
+            esValido = tipo == 20 || tipo == 23 || tipo == 27 || tipo == 30 || tipo == 33;
+
+            if (!esValido) {
+                System.out.println("Número de identificación incorrecto.");
+            }
+        } while (!esValido);
+
+        System.out.println("Ingrese DNI o número de sociedad: ");
+        DNI = TecladoIn.readLineInt();
+
+        nuevo = new CuitCuil(tipo, DNI);
+
+        return nuevo;
+    }
+
+    public static Persona ingresarPersona() {
+        Persona alguien;
+        CuitCuil cuitcuil;
+        String nombre, domicilio, codigoPostal, provincia;
+        int nroDomicilio;
+
+        cuitcuil = ingresarCuitCuil();
+
+        System.out.println("Ingrese nombre o razón social: ");
+        nombre = TecladoIn.readLine();
+        System.out.println("Ingrese domicilio: ");
+        domicilio = TecladoIn.readLine();
+        System.out.println("Ingrese número de domicilio: ");
+        nroDomicilio = TecladoIn.readLineInt();
+        System.out.println("Ingrese código postal: ");
+        codigoPostal = TecladoIn.readLine();
+        System.out.println("Ingrese provincia: ");
+        provincia = TecladoIn.readLine();
+
+        alguien = new Persona(cuitcuil, nombre, nombre, nroDomicilio, nombre, provincia);
+
+        return alguien;
+    }
+
+    /**
+     * Implementa el algoritmo de ordenamiento por inserción.
+     *
+     * @param a arreglo de números desordenados
+     */
+    public static void OrdenamientoInsertionSort(Persona[] a) {
+        long temp;
+        Persona nueva;
+        int j;
+
+        for (int p = 1; p < a.length; p++) {
+            temp = a[p].getPersona().getDNI();
+            nueva = a[p];  // Necesito almacenar la referencia de la persona !!
+            j = p;
+
+            while (j > 0 && temp < a[j-1].getPersona().getDNI()) {
+                a[j] = a[j-1];
+                j = j-1;
+            }
+
+            a[j] = nueva;
+        }
+    }
+
+    public static void OrdenamientoSelectionSort(Persona[] a) {
+        int i, j, min;
+        Persona nueva;
+
+        for (i = 0; i < a.length-1; i++) {
+            min = i;
+
+            for (j = i + 1; j < a.length; j++) {
+                if (a[j].getPersona().getDNI() < a[min].getPersona().getDNI()) {
+                    min = j;
+                }
+            }
+
+            nueva = a[i];
+            a[i] = a[min];
+            a[min] = nueva;
+        }
+    }
+}

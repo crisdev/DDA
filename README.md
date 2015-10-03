@@ -1,6 +1,7 @@
 ## Práctica DDA2015
 
-Ejercicios prácticos realizados en la clase de *Desarrollo de Algoritmos*, año 2015.
+Ejercicios prácticos realizados en la clase de *Desarrollo de Algoritmos*,
+segundo cuatrimestre del año 2015.
 
 Los objetivos de cada ejercicio se indican en los comentarios. La versión
 indica la fecha de creación.
