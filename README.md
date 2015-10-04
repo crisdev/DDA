@@ -56,3 +56,9 @@ Se utilizó JAVA como lenguaje de implementación.
 * [Ejercicio 3](/src/trabajoPracticoN4/clases/TestAuto.java)
 * [Ejercicio 4](/src/trabajoPracticoN4/clases/TestConjunto.java)
 * [Ejercicio 5](/src/trabajoPracticoN4/clases/TestMatriz.java)
+
+### Trabajo adicional
+
+* [CuitCuil](/src/trabajo/CuitCuil.java)
+* [Persona](/src/trabajo/Persona.java)
+* [TestPersona](/src/trabajo/TestPersona.java)
