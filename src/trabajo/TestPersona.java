@@ -20,14 +20,17 @@ import utiles.TecladoIn;
 /**
  *
  * @author Cristian
+ * @version 6/10/2015
  */
 public class TestPersona {
 
     public static void main(String[] args) {
         Persona[] arreglo = new Persona[5];
+        int longitudArreglo;
 
-        for (int i = 0; i < arreglo.length; i++) {
-            CuitCuil nuevo = new CuitCuil(23, (long) Aleatorio.intAleatorio(100,200));
+        longitudArreglo = arreglo.length;
+        for (int i = 0; i < longitudArreglo; i++) {
+            CuitCuil nuevo = new CuitCuil(23, (long) Aleatorio.intAleatorio(100, 200));
             arreglo[i] = new Persona(nuevo, Aleatorio.stringAleatorio(10), Aleatorio.stringAleatorio(4), i, "8300", "Neuquén");
             System.out.println("==========");
             System.out.println(arreglo[i]);
@@ -35,28 +38,29 @@ public class TestPersona {
 
         System.out.println("\n\n\nORDENADO");
         //OrdenamientoInsertionSort(arreglo);
-        OrdenamientoSelectionSort(arreglo);
-        for (int i = 0; i < arreglo.length; i++) {
+        //OrdenamientoSelectionSort(arreglo);
+        OrdenamientoBurbujaSort(arreglo);
+        for (int i = 0; i < longitudArreglo; i++) {
             System.out.println("===========");
             System.out.println(arreglo[i]);
 
         }
-
     }
 
     /**
-     * Imprime por pantalla la información almacenada sobre cualquier
-     * persona cuyo nombre sea "SUAREZ".
+     * Imprime por pantalla la información almacenada sobre cualquier persona
+     * cuyo nombre sea "SUAREZ".
      *
      * @param x arreglo de personas almacenadas
      */
     public static void Suarez(Persona[] x) {
-        int tipo;
+        int tipo, longitudArreglo;
         String nombre;
 
         nombre = "Suarez";
-        for (int i = 0; i < x.length; i++) {
-            tipo = x[i].getPersona().getTipo();
+        longitudArreglo = x.length;
+        for (int i = 0; i < longitudArreglo; i++) {
+            tipo = x[i].getCuitCuil().getTipo();
 
             if (tipo == 20 || tipo == 23 || tipo == 27) {
                 if (nombre.equalsIgnoreCase(x[i].getNombre())) {
@@ -95,6 +99,11 @@ public class TestPersona {
         return nuevo;
     }
 
+    /**
+     * Crea un nuevo objeto persona.
+     *
+     * @return una persona
+     */
     public static Persona ingresarPersona() {
         Persona alguien;
         CuitCuil cuitcuil;
@@ -122,36 +131,43 @@ public class TestPersona {
     /**
      * Implementa el algoritmo de ordenamiento por inserción.
      *
-     * @param a arreglo de números desordenados
+     * @param a arreglo de personas desordenadas
      */
     public static void OrdenamientoInsertionSort(Persona[] a) {
         long temp;
         Persona nueva;
-        int j;
+        int j, longitudArreglo;
 
-        for (int p = 1; p < a.length; p++) {
-            temp = a[p].getPersona().getDNI();
+        longitudArreglo = a.length;
+        for (int p = 1; p < longitudArreglo; p++) {
+            temp = a[p].getCuitCuil().getDNI();
             nueva = a[p];  // Necesito almacenar la referencia de la persona !!
             j = p;
 
-            while (j > 0 && temp < a[j-1].getPersona().getDNI()) {
-                a[j] = a[j-1];
-                j = j-1;
+            while (j > 0 && temp < a[j - 1].getCuitCuil().getDNI()) {
+                a[j] = a[j - 1];
+                j = j - 1;
             }
 
             a[j] = nueva;
         }
     }
 
+    /**
+     * Implementa el algoritmo de ordenamiento por selección.
+     *
+     * @param a arreglo de personas desordenadas
+     */
     public static void OrdenamientoSelectionSort(Persona[] a) {
-        int i, j, min;
+        int i, j, min, longitudArreglo;
         Persona nueva;
 
-        for (i = 0; i < a.length-1; i++) {
+        longitudArreglo = a.length;
+        for (i = 0; i < longitudArreglo - 1; i++) {
             min = i;
 
-            for (j = i + 1; j < a.length; j++) {
-                if (a[j].getPersona().getDNI() < a[min].getPersona().getDNI()) {
+            for (j = i + 1; j < longitudArreglo; j++) {
+                if (a[j].getCuitCuil().getDNI() < a[min].getCuitCuil().getDNI()) {
                     min = j;
                 }
             }
@@ -160,5 +176,55 @@ public class TestPersona {
             a[i] = a[min];
             a[min] = nueva;
         }
+    }
+
+    /**
+     * Implementa el algoritmo de ordenamiento burbuja.
+     *
+     * @param a arreglo de personas desordenadas
+     */
+    public static void OrdenamientoBurbujaSort(Persona[] a) {
+        int i, j, longitudArreglo;
+        Persona nueva;
+
+        longitudArreglo = a.length;
+        for (i = 0; i < longitudArreglo - 1; i++) {
+            for (j = 0; j < longitudArreglo - 1 - i; j++) {
+                if (a[j + 1].getCuitCuil().getDNI() < a[j].getCuitCuil().getDNI()) {
+                    nueva = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = nueva;
+                }
+            }
+        }
+    }
+
+    /**
+     * Busca secuencialmente el Cuit/Cuil especificado. Devuelve null en caso de
+     * no encontrarlo.
+     *
+     * @param p arreglo de personas
+     * @return persona cuyo CUIT/CUIL coincide con el buscado
+     */
+    public static Persona BúsquedaSecuencial(Persona[] p) {
+        int i;
+        boolean encontrado;
+        Persona nueva = null;
+        CuitCuil cuitcuil;
+
+        cuitcuil = ingresarCuitCuil();
+
+        i = 0;
+        encontrado = false;
+        while (i < p.length && !encontrado) {
+            if (cuitcuil == p[i].getCuitCuil()) {
+                nueva = p[i];
+                encontrado = true;
+            } else {
+                i = i + 1;
+            }
+        }
+
+        return nueva;
     }
 }

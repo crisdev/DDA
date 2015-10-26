@@ -1,8 +1,8 @@
 /*
  * Implementar un TDA Persona que modelará tanto a personas física o jurídicas
  * con los siguientes atributos:
- * 1. CUIT-CUIL de la persona (haga uso del TDA definido anteriormente)
- * 2. Nombre o razón social, contendrá el apellido y nombre de la persona o
+ * 1. CUIT-CUIL de la cuitcuil (haga uso del TDA definido anteriormente)
+ * 2. Nombre o razón social, contendrá el apellido y nombre de la cuitcuil o
  *    la razón social de la empresa.
  * 3. Calle del domicilio fiscal.
  * 4. Número del domicilio fiscal.
@@ -18,7 +18,7 @@ package trabajo;
  */
 public class Persona {
 
-    private CuitCuil persona;
+    private CuitCuil cuitcuil;
     private String nombre;  // o razón social
     private String domicilio;
     private int nroDomicilio;
@@ -29,8 +29,8 @@ public class Persona {
 
     }
 
-    public Persona(CuitCuil per, String nom, String dom, int nro, String cod, String prov) {
-        persona = per;
+    public Persona(CuitCuil cc, String nom, String dom, int nro, String cod, String prov) {
+        cuitcuil = cc;
         nombre = nom;
         domicilio = dom;
         nroDomicilio = nro;
@@ -39,13 +39,13 @@ public class Persona {
     }
 
     public String toString() {
-        return "Nombre: " + nombre + "\nCUIT: " + persona.getTipo() + "-" + persona.getDNI() + "-"
-                + persona.getVerificador() + "\nDomicilio: " + domicilio + "\nNúmero: " + nroDomicilio
+        return "Nombre: " + nombre + "\nCUIT: " + cuitcuil.getTipo() + "-" + cuitcuil.getDNI() + "-"
+                + cuitcuil.getVerificador() + "\nDomicilio: " + domicilio + "\nNúmero: " + nroDomicilio
                 + "\nCódigo Postal: " + codigoPostal + "\nProvincia: " + provincia;
     }
 
-    public CuitCuil getPersona() {
-        return persona;
+    public CuitCuil getCuitCuil() {
+        return cuitcuil;
     }
 
     public String getNombre() {
