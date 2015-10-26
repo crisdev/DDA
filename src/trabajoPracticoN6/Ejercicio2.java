@@ -37,9 +37,36 @@ public class Ejercicio2 {
         return pos;
     }
 
-    public static void main(String[] args) {
-        int[] arreglo = {44, 1, 35, 2, 0, 16, 25, 77, 9, 3};
+    public static int busquedaBinaria(int[] a, int k) {
+        int inicio, fin, medio, resultado;
 
-        System.out.println("Posición del elemento: " + busquedaSecuencial(arreglo, 3));
+        inicio = 0;
+        fin = a.length - 1;
+        resultado = -1;
+
+        while (inicio <= fin) {
+            medio = (inicio + fin) / 2;
+            if (k == a[medio]) {
+                resultado = medio;
+                inicio = fin + 1;
+            } else {
+                if (k < a[medio]) {
+                    fin = medio - 1;
+                } else {
+                    inicio = medio + 1;
+                }
+            }
+        }
+
+        return resultado;
+    }
+
+    public static void main(String[] args) {
+        int[] arregloA = {44, 1, 35, 2, 0, 16, 25, 77, 9, 3};
+        int[] arregloB = {0, 1, 2, 3, 9, 16, 25, 35, 44, 77};
+
+        System.out.println("Posición del elemento: " + busquedaSecuencial(arregloA, 3));
+        System.out.println("Posición del elemento: " + busquedaBinaria(arregloB, 35));
+
     }
 }
