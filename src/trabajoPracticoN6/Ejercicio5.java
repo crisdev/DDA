@@ -11,9 +11,42 @@ package trabajoPracticoN6;
  * @version 26/10/2015
  */
 public class Ejercicio5 {
-    
-    public static void burbujaMejorado(int[] arreglo) {
-        // TODO
+
+    /**
+     * Implementación de burbuja mejorado: finaliza si no hay cambios.
+     *
+     * @param a arreglo de enteros desordenado
+     */
+    public static void burbujaMejorado(int[] a) {
+        int i, j, anteUltimo, aux;
+        boolean ordenado;
+
+        anteUltimo = a.length - 1;
+        ordenado = false;
+
+        i = 0;
+        while (!ordenado) {
+            ordenado = true;
+            for (j = 0; j < anteUltimo - i; j++) {
+                if (a[j + 1] < a[j]) {
+                    aux = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = aux;
+                    ordenado = false;
+                }
+            }
+            i++;
+        }
     }
-    
+
+    public static void main(String[] args) {
+        int[] arreglo = {34, 2, 45, 0, 23, 4, 235, 5, 16, 5, 35, 2};
+
+        burbujaMejorado(arreglo);
+
+        for (int i : arreglo) {
+            System.out.print(i + " ");
+        }
+    }
+
 }
