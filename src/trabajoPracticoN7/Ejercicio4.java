@@ -16,32 +16,36 @@ package trabajoPracticoN7;
  * @version 28/10/2015
  */
 public class Ejercicio4 {
-    
-    public static boolean tieneElemento(int[] a, int elemento) {
+
+    /**
+     * Busca recursivamente un elemento dentro de un arreglo desordenado.
+     * 
+     * @param a arreglo de entrada
+     * @param indice posición desde la cual se comienza a buscar
+     * @param elemento entero a buscar
+     * @return verdadero si el elemento está en el arreglo
+     */
+    public static boolean tieneElemento(int[] a, int indice, int elemento) {
         boolean encontrado;
-        int[] c = new int[a.length-1];
-        
+
         encontrado = false;
-        
-        if (a[0] == elemento) {
+
+        if (a[indice] == elemento) {
             encontrado = true;
         } else {
-            for(int i = 1; i < a.length; i++) {
-                c[i-1] = a[i];
+            if (indice < a.length - 1) {
+                encontrado = tieneElemento(a, indice + 1, elemento);
+            } else {
+                encontrado = false;
             }
-            
-            //System.out.println(encontrado);
-            
-            encontrado = tieneElemento(c, elemento);
         }
-        
+
         return encontrado;
     }
-    
+
     public static void main(String[] args) {
         int[] v = {12, 7, 0, -1, 8, 10};
-        
-        System.out.println(tieneElemento(v, 2));
+
+        System.out.println(tieneElemento(v, 0, 12));
     }
-    
 }
