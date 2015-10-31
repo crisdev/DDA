@@ -17,27 +17,24 @@ package trabajoPracticoN7;
 public class Ejercicio3 {
 
     /**
-     * Determina recursivamente la cantidad de apariciones de un dígito
-     * sobre un número.
-     * 
+     * Determina recursivamente la cantidad de apariciones de un dígito sobre un
+     * número.
+     *
      * @param n número de ingreso
      * @param t dígito que aparece en n
      * @return cantidad de apariciones de t en n
      */
     public static int cantidadApariciones(int n, int t) {
-        int contador, p;
+        int contador;
 
-        contador = 0;
-        p = 0;
-
-        if (n % 10 == t) {
-            p = p + 1;
-        }
-
-        if (n / 10 == 0) {
-            contador = p;
+        if (n > 0) {
+            if (n % 10 == t) {
+                contador = cantidadApariciones(n / 10, t) + 1;
+            } else {
+                contador = cantidadApariciones(n / 10, t);
+            }
         } else {
-            contador = cantidadApariciones(n / 10, t) + p;
+            contador = 0;
         }
 
         return contador;
@@ -45,7 +42,7 @@ public class Ejercicio3 {
 
     /**
      * Calcula recursivamente la cantidad de dígitos que posee un número.
-     * 
+     *
      * @param n un número entero
      * @return cantidad de dígitos de n
      */
@@ -63,7 +60,7 @@ public class Ejercicio3 {
 
     public static void main(String[] args) {
         int numero = 32154;
-        int numero2 = 282321504;
+        int numero2 = 282371504;
 
         System.out.println(cantidadDigitos(numero));
         System.out.println(cantidadApariciones(numero2, 2));
