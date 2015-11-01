@@ -43,11 +43,32 @@ public class Ejercicio5 {
         return cantidad;
     }
 
-    public static int mayorValor() {
-        // TODO
+    /**
+     * Determina el mayor valor en un conjunto de números positivos.
+     *
+     * @param m máximo valor teórico
+     * @return mayor valor real
+     */
+    public static int mayorValor(int m) {
+        int n;
+
+        System.out.print("Ingrese un número entero positivo: ");
+        n = TecladoIn.readLineInt();
+
+        if (n != 0) {
+            if (n > m) {
+                m = mayorValor(n);
+            } else {
+                m = mayorValor(m);
+            }
+        }
+
+        return m;
     }
 
     public static void main(String[] args) {
         System.out.println("Cantidad de múltiplos de 4: " + multiplosDeCuatro());
+
+        System.out.println(mayorValor(0));
     }
 }
