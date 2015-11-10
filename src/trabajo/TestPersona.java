@@ -6,8 +6,8 @@
  * - Método de OrdenamientoIsertionSort() para ordenar el arreglo de personas según su CUIT-CUIL
  * - Método de OrdenamientoSelectionSort() para ordenar el arreglo de personas según su CUIT-CUIL
  * - Método de OrdenamientoBurbujaSort() para ordenar el arreglo de personas según el CUIT-CUIL
- * - Método de BúquedaSecuencial() para buscar un elemento en un arreglo ordenado de CUIT-CUIL
- * - Método de BúqeudaBinaria() para buscar un elemento en un arreglo ordenado de CUIT-CUIL
+ * - Método de BúsquedaSecuencial() para buscar un elemento en un arreglo ordenado de CUIT-CUIL
+ * - Método de BúsquedaBinaria() para buscar un elemento en un arreglo ordenado de CUIT-CUIL
  * - Método para recuperar las personas físicas de una localidad determinada (dado su código postal)
  * - Método para recuperar las personas jurídicas de una localidad determinada (dado su código postal)
  *   y calle determinada
@@ -222,6 +222,41 @@ public class TestPersona {
                 encontrado = true;
             } else {
                 i = i + 1;
+            }
+        }
+
+        return nueva;
+    }
+
+    /**
+     * Búsqueda binaria de un cuit/cuil ingresado por el usuario.
+     * 
+     * Precondición: arreglo de personas ordenado según sus números de cuit/cuil
+     * 
+     * @param p arreglo de personas ordenado
+     * @return null si la persona no es encontrada, persona si es encontrada
+     */
+    public static Persona BúsquedaBinaria(Persona[] p) {
+        int inicio, medio, fin;
+        Persona nueva;
+        CuitCuil cuitcuil;
+
+        inicio = 0;
+        fin = p.length;
+        nueva = null;
+
+        cuitcuil = ingresarCuitCuil();
+
+        while (inicio <= fin) {
+            medio = (inicio + fin) / 2;
+            if (cuitcuil == p[medio].getCuitCuil()) {
+                nueva = p[medio];
+            } else {
+                if (cuitcuil.menorQue(p[medio].getCuitCuil())) {
+                    fin = medio - 1;
+                } else {
+                    inicio = medio + 1;
+                }
             }
         }
 
