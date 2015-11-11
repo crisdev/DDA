@@ -18,9 +18,9 @@ package trabajo;
  */
 public class CuitCuil {
 
-    private int tipo;
-    private long DNI;
-    private int verificador;
+    private final int tipo;
+    private final long DNI;
+    private final int verificador;
 
     public CuitCuil(int tipo, long DNI) {
         this.tipo = tipo;

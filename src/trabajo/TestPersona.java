@@ -43,7 +43,6 @@ public class TestPersona {
         for (int i = 0; i < longitudArreglo; i++) {
             System.out.println("===========");
             System.out.println(arreglo[i]);
-
         }
     }
 
@@ -123,7 +122,7 @@ public class TestPersona {
         System.out.println("Ingrese provincia: ");
         provincia = TecladoIn.readLine();
 
-        alguien = new Persona(cuitcuil, nombre, nombre, nroDomicilio, nombre, provincia);
+        alguien = new Persona(cuitcuil, nombre, domicilio, nroDomicilio, codigoPostal, provincia);
 
         return alguien;
     }
@@ -230,9 +229,9 @@ public class TestPersona {
 
     /**
      * Búsqueda binaria de un cuit/cuil ingresado por el usuario.
-     * 
+     *
      * Precondición: arreglo de personas ordenado según sus números de cuit/cuil
-     * 
+     *
      * @param p arreglo de personas ordenado
      * @return null si la persona no es encontrada, persona si es encontrada
      */
@@ -261,5 +260,33 @@ public class TestPersona {
         }
 
         return nueva;
+    }
+
+    /**
+     * Imprime por pantalla las personas físicas que tienen un código postal
+     * introducido por el usuario.
+     * 
+     * @param a arreglo de personas
+     */
+    public static void recuperaPersonaFisica(Persona[] a) {
+        int i;
+        String codigoPostal;
+        boolean esPersonaFisica;
+
+        System.out.print("Ingrese código postal: ");
+        codigoPostal = TecladoIn.readLine();
+
+        i = 0;
+
+        do {
+            esPersonaFisica = (a[i].getCuitCuil().getTipo() == 20
+                    || a[i].getCuitCuil().getTipo() == 23
+                    || a[i].getCuitCuil().getTipo() == 27);
+            if (codigoPostal.equalsIgnoreCase(a[i].getCodigoPostal()) && esPersonaFisica) {
+                System.out.println(a[i].toString());
+            }
+
+            i = i + 1;
+        } while (i < a.length);
     }
 }
