@@ -20,6 +20,7 @@ public class Persona {
 
     private CuitCuil cuitcuil;
     private String nombre;  // o razón social
+    private String apellido;
     private String domicilio;
     private int nroDomicilio;
     private String codigoPostal;
@@ -29,9 +30,10 @@ public class Persona {
 
     }
 
-    public Persona(CuitCuil cc, String nom, String dom, int nro, String cod, String prov) {
+    public Persona(CuitCuil cc, String nom, String ape, String dom, int nro, String cod, String prov) {
         cuitcuil = cc;
         nombre = nom;
+        apellido = ape;
         domicilio = dom;
         nroDomicilio = nro;
         codigoPostal = cod;
@@ -39,7 +41,7 @@ public class Persona {
     }
 
     public String toString() {
-        return "Nombre: " + nombre + "\nCUIT: " + cuitcuil.getTipo() + "-" + cuitcuil.getDNI() + "-"
+        return "Nombre: " + nombre + "\nApellido: " + apellido + "\nCUIT: " +  cuitcuil.getTipo() + "-" + cuitcuil.getDNI() + "-"
                 + cuitcuil.getVerificador() + "\nDomicilio: " + domicilio + "\nNúmero: " + nroDomicilio
                 + "\nCódigo Postal: " + codigoPostal + "\nProvincia: " + provincia;
     }
@@ -50,6 +52,10 @@ public class Persona {
 
     public String getNombre() {
         return nombre;
+    }
+    
+    public String getApellido() {
+        return apellido;
     }
 
     public String getDomicilio() {

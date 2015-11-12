@@ -103,7 +103,7 @@ public class CuitCuil {
      * @return verdadero si el primer CUIT/CUIL es menor al segundo
      */
     public boolean menorQue(CuitCuil x) {
-        return (tipo + DNI + verificador) < (x.tipo + x.DNI + x.verificador);
+        return Integer.parseInt(tipo + DNI + verificador + "") < Integer.parseInt(x.tipo + x.DNI + x.verificador + "");
     }
 
     public int getTipo() {

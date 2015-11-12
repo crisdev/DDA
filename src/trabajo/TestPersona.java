@@ -31,7 +31,7 @@ public class TestPersona {
         longitudArreglo = arreglo.length;
         for (int i = 0; i < longitudArreglo; i++) {
             CuitCuil nuevo = new CuitCuil(23, (long) Aleatorio.intAleatorio(100, 200));
-            arreglo[i] = new Persona(nuevo, Aleatorio.stringAleatorio(10), Aleatorio.stringAleatorio(4), i, "8300", "Neuquén");
+            arreglo[i] = new Persona(nuevo, Aleatorio.stringAleatorio(10), "epe", Aleatorio.stringAleatorio(4), i, "8300", "Neuquén");
             System.out.println("==========");
             System.out.println(arreglo[i]);
         }
@@ -44,6 +44,8 @@ public class TestPersona {
             System.out.println("===========");
             System.out.println(arreglo[i]);
         }
+
+        System.out.println(cantidadPersonas(arreglo, "pepe", longitudArreglo - 1));
     }
 
     /**
@@ -106,13 +108,15 @@ public class TestPersona {
     public static Persona ingresarPersona() {
         Persona alguien;
         CuitCuil cuitcuil;
-        String nombre, domicilio, codigoPostal, provincia;
+        String nombre, apellido, domicilio, codigoPostal, provincia;
         int nroDomicilio;
 
         cuitcuil = ingresarCuitCuil();
 
         System.out.println("Ingrese nombre o razón social: ");
         nombre = TecladoIn.readLine();
+        System.out.println("Ingrese apellido: ");
+        apellido = TecladoIn.readLine();
         System.out.println("Ingrese domicilio: ");
         domicilio = TecladoIn.readLine();
         System.out.println("Ingrese número de domicilio: ");
@@ -122,7 +126,7 @@ public class TestPersona {
         System.out.println("Ingrese provincia: ");
         provincia = TecladoIn.readLine();
 
-        alguien = new Persona(cuitcuil, nombre, domicilio, nroDomicilio, codigoPostal, provincia);
+        alguien = new Persona(cuitcuil, nombre, apellido, domicilio, nroDomicilio, codigoPostal, provincia);
 
         return alguien;
     }
@@ -263,9 +267,29 @@ public class TestPersona {
     }
 
     /**
+     * Determina si una persona es física o jurídica
+     *
+     * @param a arreglo de personas
+     * @param i posición en el arreglo
+     * @return verdadero si la persona es física
+     */
+    private static boolean esPersonaFisica(Persona[] a, int i) {
+        boolean res;
+
+        res = true;
+
+        // 30 o 33 para personas jurídicas
+        if (a[i].getCuitCuil().getTipo() == 30 || a[i].getCuitCuil().getTipo() == 33) {
+            res = false;
+        }
+
+        return res;
+    }
+
+    /**
      * Imprime por pantalla las personas físicas que tienen un código postal
      * introducido por el usuario.
-     * 
+     *
      * @param a arreglo de personas
      */
     public static void recuperaPersonaFisica(Persona[] a) {
@@ -279,14 +303,62 @@ public class TestPersona {
         i = 0;
 
         do {
-            esPersonaFisica = (a[i].getCuitCuil().getTipo() == 20
-                    || a[i].getCuitCuil().getTipo() == 23
-                    || a[i].getCuitCuil().getTipo() == 27);
+            esPersonaFisica = esPersonaFisica(a, i);
             if (codigoPostal.equalsIgnoreCase(a[i].getCodigoPostal()) && esPersonaFisica) {
                 System.out.println(a[i].toString());
             }
 
             i = i + 1;
         } while (i < a.length);
+    }
+
+    /**
+     * Imprime por pantalla las personas jurídicas que tienen un código postal y
+     * una calle introducidas por el usuario.
+     *
+     * @param a arreglo de personas
+     */
+    public static void recuperarPersonaJuridica(Persona[] a) {
+        String codigoPostal;
+        int nroDomicilio, i;
+        boolean esPersonaJuridica;
+
+        System.out.print("Ingrese código postal: ");
+        codigoPostal = TecladoIn.readLine();
+        System.out.print("Ingrese número de domicilio: ");
+        nroDomicilio = TecladoIn.readLineInt();
+
+        i = 0;
+
+        do {
+            esPersonaJuridica = !esPersonaFisica(a, i);
+            if (codigoPostal.equalsIgnoreCase(a[i].getCodigoPostal())
+                    && nroDomicilio == a[i].getNroDomicilio()
+                    && esPersonaJuridica) {
+                System.out.print(a[i].toString());
+            }
+
+            i = i + 1;
+        } while (i < a.length);
+    }
+
+    public static int cantidadPersonas(Persona[] a, String apellido, int pos) {
+        int cantidad;
+
+        if (pos == 0) {
+            if (apellido.equalsIgnoreCase(a[pos].getApellido())) {
+                cantidad = 1;
+            } else {
+                cantidad = 0;
+            }
+        } else {
+            if (apellido.equalsIgnoreCase(a[pos].getApellido())) {
+                cantidad = 1 + cantidadPersonas(a, apellido, pos - 1);
+            } else {
+                cantidad = cantidadPersonas(a, apellido, pos - 1);
+            }
+        }
+
+        return cantidad;
     }
 }
