@@ -39,7 +39,7 @@ public class TestPersona {
         System.out.println("\n\n\nORDENADO");
         //OrdenamientoInsertionSort(arreglo);
         //OrdenamientoSelectionSort(arreglo);
-        OrdenamientoBurbujaSort(arreglo);
+        Ordenamiento.bubbleSort(arreglo);
         for (int i = 0; i < longitudArreglo; i++) {
             System.out.println("===========");
             System.out.println(arreglo[i]);
@@ -129,77 +129,6 @@ public class TestPersona {
         alguien = new Persona(cuitcuil, nombre, apellido, domicilio, nroDomicilio, codigoPostal, provincia);
 
         return alguien;
-    }
-
-    /**
-     * Implementa el algoritmo de ordenamiento por inserción.
-     *
-     * @param a arreglo de personas desordenadas
-     */
-    public static void OrdenamientoInsertionSort(Persona[] a) {
-        long temp;
-        Persona nueva;
-        int j, longitudArreglo;
-
-        longitudArreglo = a.length;
-        for (int p = 1; p < longitudArreglo; p++) {
-            temp = a[p].getCuitCuil().getDNI();
-            nueva = a[p];  // Necesito almacenar la referencia de la persona !!
-            j = p;
-
-            while (j > 0 && temp < a[j - 1].getCuitCuil().getDNI()) {
-                a[j] = a[j - 1];
-                j = j - 1;
-            }
-
-            a[j] = nueva;
-        }
-    }
-
-    /**
-     * Implementa el algoritmo de ordenamiento por selección.
-     *
-     * @param a arreglo de personas desordenadas
-     */
-    public static void OrdenamientoSelectionSort(Persona[] a) {
-        int i, j, min, longitudArreglo;
-        Persona nueva;
-
-        longitudArreglo = a.length;
-        for (i = 0; i < longitudArreglo - 1; i++) {
-            min = i;
-
-            for (j = i + 1; j < longitudArreglo; j++) {
-                if (a[j].getCuitCuil().getDNI() < a[min].getCuitCuil().getDNI()) {
-                    min = j;
-                }
-            }
-
-            nueva = a[i];
-            a[i] = a[min];
-            a[min] = nueva;
-        }
-    }
-
-    /**
-     * Implementa el algoritmo de ordenamiento burbuja.
-     *
-     * @param a arreglo de personas desordenadas
-     */
-    public static void OrdenamientoBurbujaSort(Persona[] a) {
-        int i, j, longitudArreglo;
-        Persona nueva;
-
-        longitudArreglo = a.length;
-        for (i = 0; i < longitudArreglo - 1; i++) {
-            for (j = 0; j < longitudArreglo - 1 - i; j++) {
-                if (a[j + 1].getCuitCuil().getDNI() < a[j].getCuitCuil().getDNI()) {
-                    nueva = a[j];
-                    a[j] = a[j + 1];
-                    a[j + 1] = nueva;
-                }
-            }
-        }
     }
 
     /**
@@ -356,6 +285,26 @@ public class TestPersona {
                 cantidad = 1 + cantidadPersonas(a, apellido, pos - 1);
             } else {
                 cantidad = cantidadPersonas(a, apellido, pos - 1);
+            }
+        }
+
+        return cantidad;
+    }
+
+    public static int cantidadEmpresas(Persona[] a, String provincia, int pos) {
+        int cantidad;
+
+        if (pos == 0) {
+            if (provincia.equalsIgnoreCase(a[pos].getProvincia())) {
+                cantidad = 1;
+            } else {
+                cantidad = 0;
+            }
+        } else {
+            if (provincia.equalsIgnoreCase(a[pos].getProvincia())) {
+                cantidad = 1 + cantidadEmpresas(a, provincia, pos - 1);
+            } else {
+                cantidad = cantidadPersonas(a, provincia, pos - 1);
             }
         }
 
