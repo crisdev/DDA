@@ -46,6 +46,15 @@ public class TestPersona {
         }
 
         System.out.println(cantidadPersonas(arreglo, "pepe", longitudArreglo - 1));
+        
+        int[] numeros = {38,27,43,3,9,82,10};
+        
+        Ordenamiento.mergeSort(numeros);
+        
+        System.out.println("===========================================");
+        for (int i: numeros) {
+            System.out.print(i + " ");
+        }
     }
 
     /**

@@ -81,4 +81,40 @@ public class Ordenamiento {
             }
         }
     }
+
+    public static void mergeSort(int[] a) {
+        int longitud = a.length;
+        int[] b = new int[longitud];
+
+        mergeSort(a, b, 0, longitud - 1);
+    }
+
+    private static void mergeSort(int[] a, int[] temp, int inicio, int fin) {
+        int medio;
+
+        if (fin - inicio > 0) {
+            medio = (inicio + fin) / 2;
+            mergeSort(a, temp, inicio, medio);
+            mergeSort(a, temp, medio + 1, fin);
+
+            mezclar(a, temp, inicio, medio, fin);
+            copiar(temp, inicio, fin, a);
+        }
+    }
+
+    private static void mezclar(int[] a, int[] temp, int posIzq, int posDer, int posFin) {
+        int finIzq, posAux, numElementos, i;
+        
+        finIzq = posDer - 1;
+        posAux = posIzq;
+        numElementos = posFin - posDer + 1;
+    }
+    
+    private static void copiar(int[] b, int inicio, int fin, int[] a) {
+        int k;
+
+        for (k = inicio; k < fin; k++) {
+            a[k] = b[k];
+        }
+    }
 }
