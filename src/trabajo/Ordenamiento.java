@@ -89,16 +89,15 @@ public class Ordenamiento {
         mergeSort(a, b, 0, longitud - 1);
     }
 
-    private static void mergeSort(int[] a, int[] temp, int inicio, int fin) {
-        int medio;
+    private static void mergeSort(int[] a, int[] temp, int izquierda, int derecha) {
+        int centro;
+        
+        if (izquierda < derecha) {
+            centro = (izquierda + derecha) / 2;
+            mergeSort(a, temp, izquierda, centro);
+            mergeSort(a, temp, centro + 1, derecha);
 
-        if (fin - inicio > 0) {
-            medio = (inicio + fin) / 2;
-            mergeSort(a, temp, inicio, medio);
-            mergeSort(a, temp, medio + 1, fin);
-
-            mezclar(a, temp, inicio, medio, fin);
-            copiar(temp, inicio, fin, a);
+            mezclar(a, temp, izquierda, centro + 1, derecha);
         }
     }
 
@@ -108,13 +107,35 @@ public class Ordenamiento {
         finIzq = posDer - 1;
         posAux = posIzq;
         numElementos = posFin - posDer + 1;
-    }
-    
-    private static void copiar(int[] b, int inicio, int fin, int[] a) {
-        int k;
-
-        for (k = inicio; k < fin; k++) {
-            a[k] = b[k];
+        
+        while (posIzq <= finIzq && posDer <= posFin) {
+            if (a[posIzq] < a[posDer]) {
+                temp[posAux++] = a[posIzq++];
+            } else {
+                temp[posAux++] = a[posDer++];
+            }
         }
-    }
+        
+        while (posIzq <= finIzq) {
+            temp[posAux++] = a[posIzq++];
+        }
+        
+        while (posDer <= posFin) {
+            temp[posAux++] = a[posDer++];
+        }
+        
+        for (int j: temp) {
+            System.out.print(j + " ");
+        }
+        
+        System.out.println();
+        
+        /*
+        i = 0;
+        while (i <= numElementos) {
+            a[posFin] = temp[posFin];
+            i++;
+            posFin--;
+        }  */
+    }    
 }
