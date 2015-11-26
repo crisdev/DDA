@@ -2,7 +2,7 @@
  * Implementar un TDA Persona que modelará tanto a personas física o jurídicas
  * con los siguientes atributos:
  * 1. CUIT-CUIL de la cuitcuil (haga uso del TDA definido anteriormente)
- * 2. Nombre o razón social, contendrá el apellido y nombre de la cuitcuil o
+ * 2. Nombre o razón social, contendrá el apellido y identificacion de la persona o
  *    la razón social de la empresa.
  * 3. Calle del domicilio fiscal.
  * 4. Número del domicilio fiscal.
@@ -19,8 +19,7 @@ package trabajo;
 public class Persona {
 
     private CuitCuil cuitcuil;
-    private String nombre;  // o razón social
-    private String apellido;
+    private String identificacion;
     private String domicilio;
     private int nroDomicilio;
     private String codigoPostal;
@@ -30,10 +29,9 @@ public class Persona {
 
     }
 
-    public Persona(CuitCuil cc, String nom, String ape, String dom, int nro, String cod, String prov) {
+    public Persona(CuitCuil cc, String nom, String dom, int nro, String cod, String prov) {
         cuitcuil = cc;
-        nombre = nom;
-        apellido = ape;
+        identificacion = nom;
         domicilio = dom;
         nroDomicilio = nro;
         codigoPostal = cod;
@@ -41,20 +39,30 @@ public class Persona {
     }
 
     public String toString() {
-        return "Nombre: " + nombre + "\nApellido: " + apellido + "\nCUIT: " +  cuitcuil.getTipo() + "-" + cuitcuil.getDNI() + "-"
+        return "Apellido y nombre o razón social: " + identificacion + "\nCUIT: " +  cuitcuil.getTipo() + "-" + cuitcuil.getDNI() + "-"
                 + cuitcuil.getVerificador() + "\nDomicilio: " + domicilio + "\nNúmero: " + nroDomicilio
                 + "\nCódigo Postal: " + codigoPostal + "\nProvincia: " + provincia;
     }
-
+    
     public CuitCuil getCuitCuil() {
         return cuitcuil;
     }
 
     public String getNombre() {
-        return nombre;
+        return identificacion;
     }
     
     public String getApellido() {
+        String apellido;
+        int pos;
+        
+        pos = 0;
+        while (identificacion.charAt(pos) != ' ') {
+            pos++;
+        }
+        
+        apellido = identificacion.substring(0, pos);
+        
         return apellido;
     }
 
@@ -73,5 +81,4 @@ public class Persona {
     public String getProvincia() {
         return provincia;
     }
-
 }

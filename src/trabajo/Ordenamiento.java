@@ -25,7 +25,7 @@ public class Ordenamiento {
             min = i;
 
             for (j = i + 1; j < longitudArreglo; j++) {
-                if (a[j].getCuitCuil().getDNI() < a[min].getCuitCuil().getDNI()) {
+                if (a[j].getCuitCuil().menorQue(a[min].getCuitCuil())) {
                     min = j;
                 }
             }
@@ -42,17 +42,15 @@ public class Ordenamiento {
      * @param a arreglo de personas desordenadas
      */
     public static void insertionSort(Persona[] a) {
-        long temp;
         Persona nueva;
         int j, longitudArreglo;
 
         longitudArreglo = a.length;
         for (int p = 1; p < longitudArreglo; p++) {
-            temp = a[p].getCuitCuil().getDNI();
-            nueva = a[p];  // Necesito almacenar la referencia de la persona !!
+            nueva = a[p];
             j = p;
 
-            while (j > 0 && temp < a[j - 1].getCuitCuil().getDNI()) {
+            while (j > 0 && a[p].getCuitCuil().menorQue(a[j - 1].getCuitCuil())) {
                 a[j] = a[j - 1];
                 j = j - 1;
             }
@@ -67,13 +65,13 @@ public class Ordenamiento {
      * @param a arreglo de personas desordenadas
      */
     public static void bubbleSort(Persona[] a) {
-        int i, j, longitudArreglo;
+        int i, j, longitud;
         Persona nueva;
 
-        longitudArreglo = a.length;
-        for (i = 0; i < longitudArreglo - 1; i++) {
-            for (j = 0; j < longitudArreglo - 1 - i; j++) {
-                if (a[j + 1].getCuitCuil().getDNI() < a[j].getCuitCuil().getDNI()) {
+        longitud = a.length;
+        for (i = 0; i < longitud - 1; i++) {
+            for (j = 0; j < longitud - 1 - i; j++) {
+                if (a[j + 1].getCuitCuil().menorQue(a[j].getCuitCuil())) {
                     nueva = a[j];
                     a[j] = a[j + 1];
                     a[j + 1] = nueva;
@@ -82,60 +80,150 @@ public class Ordenamiento {
         }
     }
 
-    public static void mergeSort(int[] a) {
-        int longitud = a.length;
-        int[] b = new int[longitud];
+    public static void mergeSort(Persona[] arreglo) {
+        int longitud = arreglo.length;
 
-        mergeSort(a, b, 0, longitud - 1);
+        mergeSort(arreglo, 0, longitud - 1);
     }
 
-    private static void mergeSort(int[] a, int[] temp, int izquierda, int derecha) {
-        int centro;
-        
-        if (izquierda < derecha) {
-            centro = (izquierda + derecha) / 2;
-            mergeSort(a, temp, izquierda, centro);
-            mergeSort(a, temp, centro + 1, derecha);
+    private static void mergeSort(Persona a[], int izquierda, int derecha) {
+        int medio;
 
-            mezclar(a, temp, izquierda, centro + 1, derecha);
+        if (izquierda < derecha) {
+            medio = (izquierda + derecha) / 2;
+
+            mergeSort(a, izquierda, medio);
+            mergeSort(a, medio + 1, derecha);
+
+            mezclar(a, izquierda, medio, derecha);
         }
     }
 
-    private static void mezclar(int[] a, int[] temp, int posIzq, int posDer, int posFin) {
-        int finIzq, posAux, numElementos, i;
-        
-        finIzq = posDer - 1;
-        posAux = posIzq;
-        numElementos = posFin - posDer + 1;
-        
-        while (posIzq <= finIzq && posDer <= posFin) {
-            if (a[posIzq] < a[posDer]) {
-                temp[posAux++] = a[posIzq++];
+    private static void mezclar(Persona a[], int izquierda, int medio, int derecha) {
+        int i, j, k;
+        Persona[] aux = new Persona[a.length];
+
+        // Copia las mitades en el arreglo auxiliar
+        for (i = izquierda; i <= derecha; i++) {
+            aux[i] = a[i];
+        }
+
+        i = k = izquierda;
+        j = medio + 1;
+
+        // Copia el elemento más grande en el arreglo original
+        while (i <= medio && j <= derecha) {
+            if (aux[i].getCuitCuil().menorQue(aux[j].getCuitCuil())) {
+                a[k++] = aux[i++];
             } else {
-                temp[posAux++] = a[posDer++];
+                a[k++] = aux[j++];
             }
         }
-        
-        while (posIzq <= finIzq) {
-            temp[posAux++] = a[posIzq++];
+
+        // Copia elementos restantes de la primera mitad
+        while (i <= medio) {
+            a[k++] = aux[i++];
         }
-        
-        while (posDer <= posFin) {
-            temp[posAux++] = a[posDer++];
+    }
+
+    public static void quickSort(Persona[] arreglo) {
+        int longitud = arreglo.length;
+
+        quickSort(arreglo, 0, longitud - 1);
+    }
+
+    private static void quickSort(Persona[] a, int izquierda, int derecha) {
+        Persona pivote = a[izquierda];
+        Persona nueva;
+        int i = izquierda;
+        int j = derecha;
+
+        // Intercambia elementos mayores y menores al pivote
+        while (i < j) {
+            while (a[i].getCuitCuil().menorIgualQue(pivote.getCuitCuil()) && i < j) {
+                i++;
+            }
+            while (pivote.getCuitCuil().menorQue(a[j].getCuitCuil())) {
+                j--;
+            }
+            if (i < j) {
+                nueva = a[i];
+                a[i] = a[j];
+                a[j] = nueva;
+            }
         }
-        
-        for (int j: temp) {
-            System.out.print(j + " ");
+
+        a[izquierda] = a[j];
+        a[j] = pivote;
+
+        // Ordena arreglo izquierdo
+        if (izquierda < j - 1) {
+            quickSort(a, izquierda, j - 1);
         }
-        
-        System.out.println();
-        
-        /*
-        i = 0;
-        while (i <= numElementos) {
-            a[posFin] = temp[posFin];
-            i++;
-            posFin--;
-        }  */
-    }    
+
+        // Ordena arreglo derecho
+        if (j + 1 < derecha) {
+            quickSort(a, j + 1, derecha);
+        }
+    }
+    
+    public static void heapSort(Persona[] a) {
+        Persona tmp;
+        int longitud, fin;
+        longitud = a.length;
+
+        armarHeapMaximo(a, longitud);
+
+        fin = longitud - 1;
+        while (fin > 0) {
+            tmp = a[fin];
+            a[fin] = a[0];
+            a[0] = tmp;
+            siftDown(a, 0, fin - 1);
+            fin--;
+        }
+    }
+
+    /**
+     * Ordena arreglo como heap máximo.
+     *
+     * @param a arreglo de ingreso
+     * @param longitud tamaño del arreglo
+     */
+    private static void armarHeapMaximo(Persona[] a, int longitud) {
+        int inicio;
+
+        inicio = (longitud - 2) / 2;
+
+        while (inicio >= 0) {
+            siftDown(a, inicio, longitud - 1);
+            inicio--;
+        }
+    }
+
+    private static void siftDown(Persona[] a, int inicio, int fin) {
+        Persona tmp;
+        int raiz, hijo;
+        boolean intercambiar;
+
+        raiz = inicio;
+        intercambiar = true;
+
+        while ((raiz * 2 + 1) <= fin && intercambiar) {
+            hijo = raiz * 2 + 1;
+
+            if (hijo + 1 <= fin && a[hijo].getCuitCuil().menorQue(a[hijo + 1].getCuitCuil())) {
+                hijo = hijo + 1;
+            }
+
+            if (a[raiz].getCuitCuil().menorQue(a[hijo].getCuitCuil())) {
+                tmp = a[raiz];
+                a[raiz] = a[hijo];
+                a[hijo] = tmp;
+                raiz = hijo;
+            } else {
+                intercambiar = false;
+            }
+        }
+    }
 }

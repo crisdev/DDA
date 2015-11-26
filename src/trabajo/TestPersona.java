@@ -31,7 +31,7 @@ public class TestPersona {
         longitudArreglo = arreglo.length;
         for (int i = 0; i < longitudArreglo; i++) {
             CuitCuil nuevo = new CuitCuil(23, (long) Aleatorio.intAleatorio(100, 200));
-            arreglo[i] = new Persona(nuevo, Aleatorio.stringAleatorio(10), "epe", Aleatorio.stringAleatorio(4), i, "8300", "Neuquén");
+            arreglo[i] = new Persona(nuevo, Aleatorio.stringAleatorio(10), Aleatorio.stringAleatorio(4), i, "8300", "Neuquén");
             System.out.println("==========");
             System.out.println(arreglo[i]);
         }
@@ -39,22 +39,16 @@ public class TestPersona {
         System.out.println("\n\n\nORDENADO");
         //OrdenamientoInsertionSort(arreglo);
         //OrdenamientoSelectionSort(arreglo);
-        Ordenamiento.bubbleSort(arreglo);
+        //Ordenamiento.bubbleSort(arreglo);
+        //Ordenamiento.mergeSort(arreglo);
+        //Ordenamiento.quickSort(arreglo);
+        Ordenamiento.heapSort(arreglo);
         for (int i = 0; i < longitudArreglo; i++) {
             System.out.println("===========");
             System.out.println(arreglo[i]);
         }
 
-        System.out.println(cantidadPersonas(arreglo, "pepe", longitudArreglo - 1));
-        
-        int[] numeros = {38,27,43,3,9,82,10};
-        
-        Ordenamiento.mergeSort(numeros);
-        
-        System.out.println("===========================================");
-        for (int i: numeros) {
-            System.out.print(i + " ");
-        }
+        //System.out.println(cantidadPersonas(arreglo, "pepe", longitudArreglo - 1));
     }
 
     /**
@@ -117,15 +111,13 @@ public class TestPersona {
     public static Persona ingresarPersona() {
         Persona alguien;
         CuitCuil cuitcuil;
-        String nombre, apellido, domicilio, codigoPostal, provincia;
+        String nombre, domicilio, codigoPostal, provincia;
         int nroDomicilio;
 
         cuitcuil = ingresarCuitCuil();
 
-        System.out.println("Ingrese nombre o razón social: ");
+        System.out.println("Ingrese apellido y nombre o razón social: ");
         nombre = TecladoIn.readLine();
-        System.out.println("Ingrese apellido: ");
-        apellido = TecladoIn.readLine();
         System.out.println("Ingrese domicilio: ");
         domicilio = TecladoIn.readLine();
         System.out.println("Ingrese número de domicilio: ");
@@ -135,7 +127,7 @@ public class TestPersona {
         System.out.println("Ingrese provincia: ");
         provincia = TecladoIn.readLine();
 
-        alguien = new Persona(cuitcuil, nombre, apellido, domicilio, nroDomicilio, codigoPostal, provincia);
+        alguien = new Persona(cuitcuil, nombre, domicilio, nroDomicilio, codigoPostal, provincia);
 
         return alguien;
     }
@@ -318,5 +310,26 @@ public class TestPersona {
         }
 
         return cantidad;
+    }
+    
+    public static void menu() {
+        System.out.println("1.- Ingresar persona física o jurídica.");
+        System.out.println("2.- Generar datos aleatorios.");
+        System.out.println("3.- Visualizar elementos del arreglo.");
+        System.out.println("4.- Mostrar personas cuyo nombre contenga la cadena Suarez.");
+        System.out.println("5.- Ordenar arreglo según CUIT-CUIL utilizando INSERTION-SORT.");
+        System.out.println("6.- Ordenar arreglo según CUIT-CUIL utilizando SELECTION-SORT.");
+        System.out.println("7.- Ordenar arreglo según CUIT-CUIL utilizando BURBUJA-SORT.");
+        System.out.println("8.- Buscar secuencialmente un CUIT-CUIL sobre el arreglo ordenado.");
+        System.out.println("9.- Buscar utilizando búsqueda binaria sobre el arreglo ordenado.");
+        System.out.println("10.- Mostrar personas físicas dado su código postal.");
+        System.out.println("11.- Mostrar personas jurídicas dado su código postal.");
+        
+        System.out.println("12.- Cantidad de personas físicas con determinado apellido.");
+        System.out.println("13.- Cantidad de personas jurídicas en una determinada provincia.");
+        System.out.println("14.- Ordenador arreglo según CUIT-CUIL utilizando MERGE-SORT.");
+        System.out.println("15.- Ordenador arreglo según CUIT-CUIL utilizando QUICK-SORT.");
+        System.out.println("16.- Ordenador arreglo según CUIT-CUIL utilizando HEAP-SORT.");
+        System.out.println("17.- Salir.");
     }
 }
