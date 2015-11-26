@@ -48,16 +48,17 @@ public class Persona {
         return cuitcuil;
     }
 
-    public String getNombre() {
+    public String getRazonSocial() {
         return identificacion;
     }
     
     public String getApellido() {
         String apellido;
-        int pos;
+        int pos, longitud;
         
         pos = 0;
-        while (identificacion.charAt(pos) != ' ') {
+        longitud = identificacion.length() - 1;
+        while (identificacion.charAt(pos) != ' ' && pos < longitud) {
             pos++;
         }
         

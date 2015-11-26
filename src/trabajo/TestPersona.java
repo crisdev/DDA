@@ -49,6 +49,7 @@ public class TestPersona {
         }
 
         //System.out.println(cantidadPersonas(arreglo, "pepe", longitudArreglo - 1));
+        //System.out.println("Apellido: " + arreglo[1].getApellido());
     }
 
     /**
@@ -67,7 +68,7 @@ public class TestPersona {
             tipo = x[i].getCuitCuil().getTipo();
 
             if (tipo == 20 || tipo == 23 || tipo == 27) {
-                if (nombre.equalsIgnoreCase(x[i].getNombre())) {
+                if (nombre.equalsIgnoreCase(x[i].getApellido())) {
                     System.out.println(x[i]);
                 }
             }
@@ -272,6 +273,14 @@ public class TestPersona {
         } while (i < a.length);
     }
 
+    /**
+     * Cuenta recursivamente la cantidad de personas que tienen el apellido especificado.
+     * 
+     * @param a arreglo de personas
+     * @param apellido apellido a buscar
+     * @param pos posición de búsqueda inicial
+     * @return cantidad de personas que tienen el apellido pasado por parámetro
+     */
     public static int cantidadPersonas(Persona[] a, String apellido, int pos) {
         int cantidad;
 
@@ -292,6 +301,14 @@ public class TestPersona {
         return cantidad;
     }
 
+    /**
+     * Cuenta recursivamente la cantidad de empresas localizadas en una provincia especificada.
+     * 
+     * @param a arreglo de personas
+     * @param provincia provincia de residencia
+     * @param pos posición inicial de búsqueda
+     * @return cantidad de empresas que habitan en la provincia especificada
+     */
     public static int cantidadEmpresas(Persona[] a, String provincia, int pos) {
         int cantidad;
 
@@ -311,7 +328,7 @@ public class TestPersona {
 
         return cantidad;
     }
-    
+
     public static void menu() {
         System.out.println("1.- Ingresar persona física o jurídica.");
         System.out.println("2.- Generar datos aleatorios.");
