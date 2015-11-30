@@ -1,8 +1,7 @@
 /*
  * Tanto el CUIT (Clave Única de Identificación Tributaria) como la CUIL
  * (Clave Única de Identificación Laboral) constan de tres partes:
- * El tipo, el número y el dígito verificador
- * separados por guión.
+ * El tipo, el número y el dígito verificador separados por guión.
  * En el siguiente ejemplo se toma como CUIT el número ##-12345678-X donde
  * ## es el tipo, 12345678 es el número de DNI o número de sociedad y X es
  * el dígito verificador.
@@ -96,20 +95,14 @@ public class CuitCuil {
         return control;
     }
 
-    /**
-     * Compara dos números de CUIT/CUIL.
-     *
-     * @param x CUIT/CUIL a comparar
-     * @return verdadero si el primer CUIT/CUIL es menor al segundo
-     */
     public boolean menorQue(CuitCuil x) {
-        return Long.parseLong(tipo + "" + DNI + "" + verificador) < Long.parseLong(x.tipo + "" + x.DNI + "" + x.verificador);
+        return Long.parseLong(tipo + "" + DNI) < Long.parseLong(x.tipo + "" + x.DNI);
     }
-    
+
     public boolean menorIgualQue(CuitCuil x) {
-        return Long.parseLong(tipo + "" + DNI + "" + verificador) <= Long.parseLong(x.tipo + "" + x.DNI + "" + x.verificador);
+        return Long.parseLong(tipo + "" + DNI) <= Long.parseLong(x.tipo + "" + x.DNI);
     }
-    
+
     public int getTipo() {
         return tipo;
     }
@@ -120,5 +113,9 @@ public class CuitCuil {
 
     public int getVerificador() {
         return verificador;
+    }
+
+    public boolean esIgualA(CuitCuil x) {
+        return tipo == x.tipo && DNI == x.DNI;
     }
 }

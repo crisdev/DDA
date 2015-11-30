@@ -1,6 +1,6 @@
 /*
  * Esta clase incluye los métodos de ordenamiento implementados
- * sobre la clase Persona.
+ * sobre la clase TestPersona: INSERTION, SELECTION, BUBBLE, MERGE, QUICK y HEAP.
  */
 package trabajo;
 
@@ -14,17 +14,18 @@ public class Ordenamiento {
     /**
      * Implementa el algoritmo de ordenamiento por selección.
      *
-     * @param a arreglo de personas desordenadas
+     * @param a arreglo de personas desordenado
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
      */
-    public static void selectionSort(Persona[] a) {
-        int i, j, min, longitudArreglo;
+    public static void selectionSort(Persona[] a, int cantPersonas) {
+        int i, j, min;
         Persona nueva;
 
-        longitudArreglo = a.length;
-        for (i = 0; i < longitudArreglo - 1; i++) {
+        for (i = 0; i < cantPersonas - 1; i++) {
             min = i;
 
-            for (j = i + 1; j < longitudArreglo; j++) {
+            for (j = i + 1; j < cantPersonas; j++) {
                 if (a[j].getCuitCuil().menorQue(a[min].getCuitCuil())) {
                     min = j;
                 }
@@ -39,14 +40,15 @@ public class Ordenamiento {
     /**
      * Implementa el algoritmo de ordenamiento por inserción.
      *
-     * @param a arreglo de personas desordenadas
+     * @param a arreglo de personas desordenado
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
      */
-    public static void insertionSort(Persona[] a) {
+    public static void insertionSort(Persona[] a, int cantPersonas) {
         Persona nueva;
-        int j, longitudArreglo;
+        int j;
 
-        longitudArreglo = a.length;
-        for (int p = 1; p < longitudArreglo; p++) {
+        for (int p = 1; p < cantPersonas; p++) {
             nueva = a[p];
             j = p;
 
@@ -62,15 +64,16 @@ public class Ordenamiento {
     /**
      * Implementa el algoritmo de ordenamiento burbuja.
      *
-     * @param a arreglo de personas desordenadas
+     * @param a arreglo de personas desordenado
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
      */
-    public static void bubbleSort(Persona[] a) {
-        int i, j, longitud;
+    public static void bubbleSort(Persona[] a, int cantPersonas) {
+        int i, j;
         Persona nueva;
 
-        longitud = a.length;
-        for (i = 0; i < longitud - 1; i++) {
-            for (j = 0; j < longitud - 1 - i; j++) {
+        for (i = 0; i < cantPersonas - 1; i++) {
+            for (j = 0; j < cantPersonas - 1 - i; j++) {
                 if (a[j + 1].getCuitCuil().menorQue(a[j].getCuitCuil())) {
                     nueva = a[j];
                     a[j] = a[j + 1];
@@ -80,10 +83,15 @@ public class Ordenamiento {
         }
     }
 
-    public static void mergeSort(Persona[] arreglo) {
-        int longitud = arreglo.length;
-
-        mergeSort(arreglo, 0, longitud - 1);
+    /**
+     * Implementa el algorito de ordenamiento merge sort.
+     *
+     * @param arreglo arreglo de personas desordenado
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
+     */
+    public static void mergeSort(Persona[] arreglo, int cantPersonas) {
+        mergeSort(arreglo, 0, cantPersonas - 1);
     }
 
     private static void mergeSort(Persona a[], int izquierda, int derecha) {
@@ -126,10 +134,15 @@ public class Ordenamiento {
         }
     }
 
-    public static void quickSort(Persona[] arreglo) {
-        int longitud = arreglo.length;
-
-        quickSort(arreglo, 0, longitud - 1);
+    /**
+     * Implementa el algoritmo de ordenación quick sort.
+     *
+     * @param arreglo arreglo de personas desordenado
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
+     */
+    public static void quickSort(Persona[] arreglo, int cantPersonas) {
+        quickSort(arreglo, 0, cantPersonas - 1);
     }
 
     private static void quickSort(Persona[] a, int izquierda, int derecha) {
@@ -166,30 +179,30 @@ public class Ordenamiento {
             quickSort(a, j + 1, derecha);
         }
     }
-    
-    public static void heapSort(Persona[] a) {
+
+    /**
+     * Implementa el algoritmo de ordenación heap sort.
+     *
+     * @param a arreglo de personas desordenado
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
+     */
+    public static void heapSort(Persona[] a, int cantPersonas) {
         Persona tmp;
-        int longitud, fin;
-        longitud = a.length;
+        int posFin;
 
-        armarHeapMaximo(a, longitud);
+        armarHeapMaximo(a, cantPersonas);
 
-        fin = longitud - 1;
-        while (fin > 0) {
-            tmp = a[fin];
-            a[fin] = a[0];
+        posFin = cantPersonas - 1;
+        while (posFin > 0) {
+            tmp = a[posFin];
+            a[posFin] = a[0];
             a[0] = tmp;
-            siftDown(a, 0, fin - 1);
-            fin--;
+            siftDown(a, 0, posFin - 1);
+            posFin--;
         }
     }
 
-    /**
-     * Ordena arreglo como heap máximo.
-     *
-     * @param a arreglo de ingreso
-     * @param longitud tamaño del arreglo
-     */
     private static void armarHeapMaximo(Persona[] a, int longitud) {
         int inicio;
 
@@ -201,18 +214,18 @@ public class Ordenamiento {
         }
     }
 
-    private static void siftDown(Persona[] a, int inicio, int fin) {
+    private static void siftDown(Persona[] a, int posIni, int posFin) {
         Persona tmp;
         int raiz, hijo;
         boolean intercambiar;
 
-        raiz = inicio;
+        raiz = posIni;
         intercambiar = true;
 
-        while ((raiz * 2 + 1) <= fin && intercambiar) {
+        while ((raiz * 2 + 1) <= posFin && intercambiar) {
             hijo = raiz * 2 + 1;
 
-            if (hijo + 1 <= fin && a[hijo].getCuitCuil().menorQue(a[hijo + 1].getCuitCuil())) {
+            if (hijo + 1 <= posFin && a[hijo].getCuitCuil().menorQue(a[hijo + 1].getCuitCuil())) {
                 hijo = hijo + 1;
             }
 

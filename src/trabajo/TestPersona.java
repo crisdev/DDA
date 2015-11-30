@@ -6,15 +6,14 @@
  * - Método de OrdenamientoIsertionSort() para ordenar el arreglo de personas según su CUIT-CUIL
  * - Método de OrdenamientoSelectionSort() para ordenar el arreglo de personas según su CUIT-CUIL
  * - Método de OrdenamientoBurbujaSort() para ordenar el arreglo de personas según el CUIT-CUIL
- * - Método de BúsquedaSecuencial() para buscar un elemento en un arreglo ordenado de CUIT-CUIL
- * - Método de BúsquedaBinaria() para buscar un elemento en un arreglo ordenado de CUIT-CUIL
+ * - Método de busquedaSecuencial() para buscar un elemento en un arreglo ordenado de CUIT-CUIL
+ * - Método de busquedaBinaria() para buscar un elemento en un arreglo ordenado de CUIT-CUIL
  * - Método para recuperar las personas físicas de una localidad determinada (dado su código postal)
  * - Método para recuperar las personas jurídicas de una localidad determinada (dado su código postal)
  *   y calle determinada
  */
 package trabajo;
 
-import utiles.Aleatorio;
 import utiles.TecladoIn;
 
 /**
@@ -25,79 +24,161 @@ import utiles.TecladoIn;
 public class TestPersona {
 
     public static void main(String[] args) {
-        Persona[] arreglo = new Persona[5];
-        int longitudArreglo;
+        final int almacenamientoMaximo = 50;
+        Persona[] persona = new Persona[almacenamientoMaximo];
+        int opcion, cantPersonas, cant;
+        String apellido, provincia;
 
-        longitudArreglo = arreglo.length;
-        for (int i = 0; i < longitudArreglo; i++) {
-            CuitCuil nuevo = new CuitCuil(23, (long) Aleatorio.intAleatorio(100, 200));
-            arreglo[i] = new Persona(nuevo, Aleatorio.stringAleatorio(10), Aleatorio.stringAleatorio(4), i, "8300", "Neuquén");
-            System.out.println("==========");
-            System.out.println(arreglo[i]);
-        }
-
-        System.out.println("\n\n\nORDENADO");
-        //OrdenamientoInsertionSort(arreglo);
-        //OrdenamientoSelectionSort(arreglo);
-        //Ordenamiento.bubbleSort(arreglo);
-        //Ordenamiento.mergeSort(arreglo);
-        //Ordenamiento.quickSort(arreglo);
-        Ordenamiento.heapSort(arreglo);
-        for (int i = 0; i < longitudArreglo; i++) {
-            System.out.println("===========");
-            System.out.println(arreglo[i]);
-        }
-
-        //System.out.println(cantidadPersonas(arreglo, "pepe", longitudArreglo - 1));
-        //System.out.println("Apellido: " + arreglo[1].getApellido());
+        cantPersonas = 0;
+        do {
+            menu();
+            opcion = TecladoIn.readLineInt();
+            switch (opcion) {
+                case 1:
+                    persona[cantPersonas] = ingresarPersona(persona, cantPersonas);
+                    cantPersonas++;
+                    break;
+                case 2:
+                    System.out.print("Ingrese cantidad de datos a generar: ");
+                    cant = TecladoIn.readLineInt();
+                    if ((cant > 0) && (cant + cantPersonas < almacenamientoMaximo)) {
+                        generarDatosAleatorios(persona, cantPersonas, cant);
+                        cantPersonas += cant;
+                    } else {
+                        System.out.println("Número incorrecto, reingrese");
+                    }
+                    break;
+                case 3:
+                    mostrarPersonas(persona, cantPersonas);
+                    break;
+                case 4:
+                    buscarPersona(persona, cantPersonas);
+                    break;
+                case 5:
+                    Ordenamiento.insertionSort(persona, cantPersonas);
+                    System.out.println("===== PERSONAS ORDENADAS =====");
+                    mostrarPersonas(persona, cantPersonas);
+                    break;
+                case 6:
+                    Ordenamiento.selectionSort(persona, cantPersonas);
+                    System.out.println("===== PERSONAS ORDENADAS =====");
+                    mostrarPersonas(persona, cantPersonas);
+                    break;
+                case 7:
+                    Ordenamiento.bubbleSort(persona, cantPersonas);
+                    System.out.println("===== PERSONAS ORDENADAS =====");
+                    mostrarPersonas(persona, cantPersonas);
+                    break;
+                case 8:
+                    busquedaSecuencial(persona, cantPersonas);
+                    break;
+                case 9:
+                    busquedaBinaria(persona, cantPersonas);
+                    break;
+                case 10:
+                    recuperaPersonaFisica(persona, cantPersonas);
+                    break;
+                case 11:
+                    recuperarPersonaJuridica(persona, cantPersonas);
+                    break;
+                case 12:
+                    System.out.print("Ingrese apellido: ");
+                    apellido = TecladoIn.readLine();
+                    cant = cantidadPersonas(persona, apellido, cantPersonas - 1);
+                    System.out.println("Cantidad de personas encontradas: " + cant);
+                    break;
+                case 13:
+                    System.out.print("Ingrese provincia: ");
+                    provincia = TecladoIn.readLine();
+                    cant = cantidadEmpresas(persona, provincia, cantPersonas - 1);
+                    System.out.println("Cantidad de empresas encontradas: " + cant);
+                    break;
+                case 14:
+                    Ordenamiento.mergeSort(persona, cantPersonas);
+                    System.out.println("===== PERSONAS ORDENADAS =====");
+                    mostrarPersonas(persona, cantPersonas);
+                    break;
+                case 15:
+                    Ordenamiento.quickSort(persona, cantPersonas);
+                    System.out.println("===== PERSONAS ORDENADAS =====");
+                    mostrarPersonas(persona, cantPersonas);
+                    break;
+                case 16:
+                    Ordenamiento.heapSort(persona, cantPersonas);
+                    System.out.println("===== PERSONAS ORDENADAS =====");
+                    mostrarPersonas(persona, cantPersonas);
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Opción incorrecta verifique y reingrese");
+                    break;
+            }
+        } while (opcion != 0);
     }
 
     /**
-     * Imprime por pantalla la información almacenada sobre cualquier persona
-     * cuyo nombre sea "SUAREZ".
+     * Imprime por pantalla la información almacenada sobre una persona cuyo
+     * apellido sea ingresado por el usuario.
      *
-     * @param x arreglo de personas almacenadas
+     * @param x arreglo de personas
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
      */
-    public static void Suarez(Persona[] x) {
-        int tipo, longitudArreglo;
+    public static void buscarPersona(Persona[] x, int cantPersonas) {
         String nombre;
+        int i;
+        boolean encontrado;
 
-        nombre = "Suarez";
-        longitudArreglo = x.length;
-        for (int i = 0; i < longitudArreglo; i++) {
-            tipo = x[i].getCuitCuil().getTipo();
-
-            if (tipo == 20 || tipo == 23 || tipo == 27) {
+        encontrado = false;
+        System.out.print("Ingrese apellido a buscar: ");
+        nombre = TecladoIn.readLine();
+        for (i = 0; i < cantPersonas; i++) {
+            if (esPersonaFisica(x, i)) {
                 if (nombre.equalsIgnoreCase(x[i].getApellido())) {
+                    encontrado = true;
                     System.out.println(x[i]);
                 }
             }
+        }
+
+        if (!encontrado) {
+            System.out.println("Ninguna persona hallada");
         }
     }
 
     /**
      * Crea un nuevo objeto CUIT/CUIL.
      *
-     * @return objeto CUIT/CUIL
+     * @param p arreglo de personas
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
+     * @return objeto válido CUIT/CUIL
      */
-    public static CuitCuil ingresarCuitCuil() {
+    public static CuitCuil ingresarCuitCuil(Persona[] p, int cantPersonas) {
         CuitCuil nuevo;
         byte tipo;
         int DNI;
-        boolean esValido;
+        boolean idValido, repetido;
 
         do {
-            System.out.println("Ingrese tipo de identificación: ");
-            tipo = TecladoIn.readLineByte();
-            esValido = tipo == 20 || tipo == 23 || tipo == 27 || tipo == 30 || tipo == 33;
+            do {
+                System.out.print("Ingrese tipo de identificación (20, 23, 27, 30 o 33): ");
+                tipo = TecladoIn.readLineByte();
+                idValido = tipo == 20 || tipo == 23 || tipo == 27 || tipo == 30 || tipo == 33;
+                if (!idValido) {
+                    System.out.println("Número de identificación incorrecto, reingrese datos");
+                }
+            } while (!idValido);
 
-            if (!esValido) {
-                System.out.println("Número de identificación incorrecto.");
+            System.out.print("Ingrese DNI o número de sociedad: ");
+            DNI = TecladoIn.readLineInt();
+            repetido = cuitcuilRepetido(p, new CuitCuil(tipo, DNI), cantPersonas);
+
+            if (repetido) {
+                System.out.println("Cuit/Cuil repetido, reingrese datos");
             }
-        } while (!esValido);
-
-        System.out.println("Ingrese DNI o número de sociedad: ");
-        DNI = TecladoIn.readLineInt();
+        } while (repetido);
 
         nuevo = new CuitCuil(tipo, DNI);
 
@@ -107,25 +188,27 @@ public class TestPersona {
     /**
      * Crea un nuevo objeto persona.
      *
+     * @param p arreglo de personas
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
      * @return una persona
      */
-    public static Persona ingresarPersona() {
+    public static Persona ingresarPersona(Persona[] p, int cantPersonas) {
         Persona alguien;
         CuitCuil cuitcuil;
         String nombre, domicilio, codigoPostal, provincia;
         int nroDomicilio;
 
-        cuitcuil = ingresarCuitCuil();
-
-        System.out.println("Ingrese apellido y nombre o razón social: ");
+        System.out.print("Ingrese apellido y nombre o razón social: ");
         nombre = TecladoIn.readLine();
-        System.out.println("Ingrese domicilio: ");
+        cuitcuil = ingresarCuitCuil(p, cantPersonas);
+        System.out.print("Ingrese domicilio: ");
         domicilio = TecladoIn.readLine();
-        System.out.println("Ingrese número de domicilio: ");
+        System.out.print("Ingrese número de domicilio: ");
         nroDomicilio = TecladoIn.readLineInt();
-        System.out.println("Ingrese código postal: ");
+        System.out.print("Ingrese código postal: ");
         codigoPostal = TecladoIn.readLine();
-        System.out.println("Ingrese provincia: ");
+        System.out.print("Ingrese provincia: ");
         provincia = TecladoIn.readLine();
 
         alguien = new Persona(cuitcuil, nombre, domicilio, nroDomicilio, codigoPostal, provincia);
@@ -134,59 +217,64 @@ public class TestPersona {
     }
 
     /**
-     * Busca secuencialmente el Cuit/Cuil especificado. Devuelve null en caso de
-     * no encontrarlo.
+     * Busca secuencialmente el Cuit/Cuil especificado y lo muestra por
+     * pantalla.
      *
      * @param p arreglo de personas
-     * @return persona cuyo CUIT/CUIL coincide con el buscado
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
      */
-    public static Persona BúsquedaSecuencial(Persona[] p) {
+    public static void busquedaSecuencial(Persona[] p, int cantPersonas) {
         int i;
         boolean encontrado;
-        Persona nueva = null;
         CuitCuil cuitcuil;
-
-        cuitcuil = ingresarCuitCuil();
+        Persona[] n = p;
 
         i = 0;
         encontrado = false;
-        while (i < p.length && !encontrado) {
-            if (cuitcuil == p[i].getCuitCuil()) {
-                nueva = p[i];
+        Ordenamiento.insertionSort(n, cantPersonas); // la búsqueda se realiza sobre el arreglo ordenado
+        cuitcuil = ingresarCuitCuil(p, cantPersonas);
+        while (i < cantPersonas && !encontrado) {
+            if (cuitcuil.esIgualA(n[i].getCuitCuil())) {
                 encontrado = true;
+                System.out.println("===== PERSONA ENCONTRADA =====");
+                System.out.println(n[i]);
             } else {
                 i = i + 1;
             }
         }
 
-        return nueva;
+        if (!encontrado) {
+            System.out.println("La persona que busca no existe");
+        }
     }
 
     /**
-     * Búsqueda binaria de un cuit/cuil ingresado por el usuario.
+     * Busca binariamente el Cuit/Cuil especificado y lo muestra por pantalla.
      *
-     * Precondición: arreglo de personas ordenado según sus números de cuit/cuil
-     *
-     * @param p arreglo de personas ordenado
-     * @return null si la persona no es encontrada, persona si es encontrada
+     * @param p arreglo de personas
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
      */
-    public static Persona BúsquedaBinaria(Persona[] p) {
+    public static void busquedaBinaria(Persona[] p, int cantPersonas) {
         int inicio, medio, fin;
-        Persona nueva;
+        boolean encontrado;
         CuitCuil cuitcuil;
+        Persona[] n = p;
 
         inicio = 0;
-        fin = p.length;
-        nueva = null;
-
-        cuitcuil = ingresarCuitCuil();
-
-        while (inicio <= fin) {
+        fin = cantPersonas;
+        encontrado = false;
+        cuitcuil = ingresarCuitCuil(n, cantPersonas);
+        Ordenamiento.insertionSort(n, cantPersonas);
+        while (inicio <= fin && !encontrado) {
             medio = (inicio + fin) / 2;
-            if (cuitcuil == p[medio].getCuitCuil()) {
-                nueva = p[medio];
+            if (cuitcuil.esIgualA(n[medio].getCuitCuil())) {
+                encontrado = true;
+                System.out.println("===== PERSONA ENCONTRADA =====");
+                System.out.println(n[medio]);
             } else {
-                if (cuitcuil.menorQue(p[medio].getCuitCuil())) {
+                if (cuitcuil.menorQue(n[medio].getCuitCuil())) {
                     fin = medio - 1;
                 } else {
                     inicio = medio + 1;
@@ -194,7 +282,9 @@ public class TestPersona {
             }
         }
 
-        return nueva;
+        if (!encontrado) {
+            System.out.println("La persona que busca no existe");
+        }
     }
 
     /**
@@ -222,8 +312,10 @@ public class TestPersona {
      * introducido por el usuario.
      *
      * @param a arreglo de personas
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
      */
-    public static void recuperaPersonaFisica(Persona[] a) {
+    public static void recuperaPersonaFisica(Persona[] a, int cantPersonas) {
         int i;
         String codigoPostal;
         boolean esPersonaFisica;
@@ -240,16 +332,18 @@ public class TestPersona {
             }
 
             i = i + 1;
-        } while (i < a.length);
+        } while (i < cantPersonas);
     }
 
     /**
      * Imprime por pantalla las personas jurídicas que tienen un código postal y
-     * una calle introducidas por el usuario.
+     * un número de domicilio introducidos por el usuario.
      *
      * @param a arreglo de personas
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
      */
-    public static void recuperarPersonaJuridica(Persona[] a) {
+    public static void recuperarPersonaJuridica(Persona[] a, int cantPersonas) {
         String codigoPostal;
         int nroDomicilio, i;
         boolean esPersonaJuridica;
@@ -270,31 +364,32 @@ public class TestPersona {
             }
 
             i = i + 1;
-        } while (i < a.length);
+        } while (i < cantPersonas);
     }
 
     /**
-     * Cuenta recursivamente la cantidad de personas que tienen el apellido especificado.
-     * 
+     * Cuenta recursivamente la cantidad de personas que tienen el apellido
+     * especificado.
+     *
      * @param a arreglo de personas
      * @param apellido apellido a buscar
-     * @param pos posición de búsqueda inicial
+     * @param cantPersonas posición de búsqueda inicial
      * @return cantidad de personas que tienen el apellido pasado por parámetro
      */
-    public static int cantidadPersonas(Persona[] a, String apellido, int pos) {
+    public static int cantidadPersonas(Persona[] a, String apellido, int cantPersonas) {
         int cantidad;
 
-        if (pos == 0) {
-            if (apellido.equalsIgnoreCase(a[pos].getApellido())) {
+        if (cantPersonas == 0) {
+            if (apellido.equalsIgnoreCase(a[cantPersonas].getApellido())) {
                 cantidad = 1;
             } else {
                 cantidad = 0;
             }
         } else {
-            if (apellido.equalsIgnoreCase(a[pos].getApellido())) {
-                cantidad = 1 + cantidadPersonas(a, apellido, pos - 1);
+            if (apellido.equalsIgnoreCase(a[cantPersonas].getApellido())) {
+                cantidad = 1 + cantidadPersonas(a, apellido, cantPersonas - 1);
             } else {
-                cantidad = cantidadPersonas(a, apellido, pos - 1);
+                cantidad = cantidadPersonas(a, apellido, cantPersonas - 1);
             }
         }
 
@@ -302,51 +397,148 @@ public class TestPersona {
     }
 
     /**
-     * Cuenta recursivamente la cantidad de empresas localizadas en una provincia especificada.
-     * 
+     * Cuenta recursivamente la cantidad de empresas localizadas en una
+     * provincia especificada.
+     *
      * @param a arreglo de personas
      * @param provincia provincia de residencia
-     * @param pos posición inicial de búsqueda
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
      * @return cantidad de empresas que habitan en la provincia especificada
      */
-    public static int cantidadEmpresas(Persona[] a, String provincia, int pos) {
+    public static int cantidadEmpresas(Persona[] a, String provincia, int cantPersonas) {
         int cantidad;
 
-        if (pos == 0) {
-            if (provincia.equalsIgnoreCase(a[pos].getProvincia())) {
+        if (cantPersonas == 0) {
+            if (provincia.equalsIgnoreCase(a[cantPersonas].getProvincia())) {
                 cantidad = 1;
             } else {
                 cantidad = 0;
             }
         } else {
-            if (provincia.equalsIgnoreCase(a[pos].getProvincia())) {
-                cantidad = 1 + cantidadEmpresas(a, provincia, pos - 1);
+            if (provincia.equalsIgnoreCase(a[cantPersonas].getProvincia())) {
+                cantidad = 1 + cantidadEmpresas(a, provincia, cantPersonas - 1);
             } else {
-                cantidad = cantidadPersonas(a, provincia, pos - 1);
+                cantidad = cantidadPersonas(a, provincia, cantPersonas - 1);
             }
         }
 
         return cantidad;
     }
 
+    /**
+     * Verifica si un Cuit/Cuil fue introducido previamente en el arreglo de
+     * personas
+     *
+     * @param p arreglo de personas
+     * @param n cuit/cuil a agregar
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
+     * @return verdadero si está repetido
+     */
+    private static boolean cuitcuilRepetido(Persona[] p, CuitCuil n, int cantPersonas) {
+        boolean estaRepetido;
+        int i;
+
+        i = 0;
+        estaRepetido = false;
+        while (i < cantPersonas && !estaRepetido) {
+            if (p[i].getCuitCuil() == n) {
+                estaRepetido = true;
+            } else {
+                i = i + 1;
+            }
+        }
+
+        return estaRepetido;
+    }
+
+    /**
+     * Genera personas físicas y jurídicas de forma automática.
+     *
+     * @param p arreglo de personas
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
+     * @param cantidad cantidad de elementos a generar
+     */
+    private static void generarDatosAleatorios(Persona[] p, int cantPersonas, int cantidad) {
+        int i;
+
+        int[] tipo = {20, 23, 27, 30, 33};
+
+        String[] nombre = {"Juan", "Matias", "Pedro", "Ignacio", "German", "Nicolas", "Lucia", "Patricia", "Maria", "Soledad"};
+        String[] apellido = {"Suarez", "Castillo", "Lopez", "Villegas", "Bauch", "Fernandez", "Bobeda", "Puerta", "Aguada", "Pereira"};
+        String[] empresa = {"Coca Cola", "Apple", "Microsoft", "Jugos del Sur", "Sancor", "Perez Compaq", "Transportes del Valle", "LAN", "Aceros Inc", "Ferreteria Miguelito"};
+        String[] domicilio = {"Almafuerte", "Los Jazmines", "Avenida Siempreviva", "Cura Brochero", "Torre Mirador", "Saveedra", "Liniers", "Almafuerte", "Las Lomas", "Rivadavia"};
+        int[] nroDomicilio = {50, 202, 23, 56, 11, 650, 88, 100, 3, 800};
+        String[] codPostal = {"8100", "8300", "2000", "6030", "1100", "8080", "112", "9000", "2200", "7000"};
+        String[] provincia = {"Neuquen", "Rio Negro", "Buenos Aires", "Capital Federal", "Santa Fe", "Cordoba", "Mendoza"};
+
+        i = 0;
+        while (i < cantidad) {
+            int t = tipo[Aleatorio.intAleatorio(0, tipo.length - 1)];
+            String nom, ape;
+            String dom = domicilio[Aleatorio.intAleatorio(0, domicilio.length - 1)];
+            int nro = nroDomicilio[Aleatorio.intAleatorio(0, nroDomicilio.length - 1)];
+            String cod = codPostal[Aleatorio.intAleatorio(0, codPostal.length - 1)];
+            String prov = provincia[Aleatorio.intAleatorio(0, provincia.length - 1)];
+
+            CuitCuil nuevo = new CuitCuil(t, Aleatorio.intAleatorio(20000000, 30000000));
+
+            if (t == 20 || t == 23 || t == 27) {
+                nom = nombre[Aleatorio.intAleatorio(0, nombre.length - 1)];
+                ape = apellido[Aleatorio.intAleatorio(0, apellido.length - 1)];
+                p[cantPersonas++] = new Persona(nuevo, ape + " " + nom, dom, nro, cod, prov);
+            } else {
+                nom = empresa[Aleatorio.intAleatorio(0, empresa.length - 1)];
+                p[cantPersonas++] = new Persona(nuevo, nom, dom, nro, cod, prov);
+            }
+
+            i = i + 1;
+        }
+    }
+
+    /**
+     * Imprime por pantalla las personas almacenadas en el arreglo.
+     *
+     * @param p arreglo de personas
+     * @param cantPersonas cantidad de personas válidamente ingresadas en el
+     * arreglo
+     */
+    public static void mostrarPersonas(Persona[] p, int cantPersonas) {
+        int i;
+
+        for (i = 0; i < cantPersonas; i++) {
+            System.out.println(p[i].toString());
+        }
+    }
+
+    /**
+     * Imprime un menú por pantalla.
+     */
     public static void menu() {
-        System.out.println("1.- Ingresar persona física o jurídica.");
-        System.out.println("2.- Generar datos aleatorios.");
-        System.out.println("3.- Visualizar elementos del arreglo.");
-        System.out.println("4.- Mostrar personas cuyo nombre contenga la cadena Suarez.");
-        System.out.println("5.- Ordenar arreglo según CUIT-CUIL utilizando INSERTION-SORT.");
-        System.out.println("6.- Ordenar arreglo según CUIT-CUIL utilizando SELECTION-SORT.");
-        System.out.println("7.- Ordenar arreglo según CUIT-CUIL utilizando BURBUJA-SORT.");
-        System.out.println("8.- Buscar secuencialmente un CUIT-CUIL sobre el arreglo ordenado.");
-        System.out.println("9.- Buscar utilizando búsqueda binaria sobre el arreglo ordenado.");
-        System.out.println("10.- Mostrar personas físicas dado su código postal.");
-        System.out.println("11.- Mostrar personas jurídicas dado su código postal.");
-        
-        System.out.println("12.- Cantidad de personas físicas con determinado apellido.");
-        System.out.println("13.- Cantidad de personas jurídicas en una determinada provincia.");
-        System.out.println("14.- Ordenador arreglo según CUIT-CUIL utilizando MERGE-SORT.");
-        System.out.println("15.- Ordenador arreglo según CUIT-CUIL utilizando QUICK-SORT.");
-        System.out.println("16.- Ordenador arreglo según CUIT-CUIL utilizando HEAP-SORT.");
-        System.out.println("17.- Salir.");
+        System.out.println("-------------------------------------------------------------------------");
+        System.out.println("Ingrese el número correspondiente a la opción deseada ");
+        System.out.println();
+        System.out.println("1. Ingresar persona física o jurídica.");
+        System.out.println("2. Generar datos aleatorios.");
+        System.out.println("3. Visualizar elementos del arreglo.");
+        System.out.println("4. Buscar persona por apellido.");
+        System.out.println("5. Ordenar arreglo según CUIT-CUIL utilizando INSERTION-SORT.");
+        System.out.println("6. Ordenar arreglo según CUIT-CUIL utilizando SELECTION-SORT.");
+        System.out.println("7. Ordenar arreglo según CUIT-CUIL utilizando BURBUJA-SORT.");
+        System.out.println("8. Buscar secuencialmente un CUIT-CUIL sobre el arreglo ordenado.");
+        System.out.println("9. Buscar utilizando búsqueda binaria sobre el arreglo ordenado.");
+        System.out.println("10. Mostrar personas físicas dado su código postal.");
+        System.out.println("11. Mostrar personas jurídicas dado su código postal y calle.");
+        System.out.println("12. Cantidad de personas físicas con determinado apellido.");
+        System.out.println("13. Cantidad de personas jurídicas en una determinada provincia.");
+        System.out.println("14. Ordenador arreglo según CUIT-CUIL utilizando MERGE-SORT.");
+        System.out.println("15. Ordenador arreglo según CUIT-CUIL utilizando QUICK-SORT.");
+        System.out.println("16. Ordenador arreglo según CUIT-CUIL utilizando HEAP-SORT.");
+        System.out.println();
+        System.out.println("0. Salir.");
+        System.out.println("-------------------------------------------------------------------------");
+        System.out.print("> ");
     }
 }

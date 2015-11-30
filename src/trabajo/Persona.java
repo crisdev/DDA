@@ -2,8 +2,7 @@
  * Implementar un TDA Persona que modelará tanto a personas física o jurídicas
  * con los siguientes atributos:
  * 1. CUIT-CUIL de la cuitcuil (haga uso del TDA definido anteriormente)
- * 2. Nombre o razón social, contendrá el apellido y identificacion de la persona o
- *    la razón social de la empresa.
+ * 2. Nombre o razón social, contendrá el apellido e identificacion de la persona o la razón social de la empresa.
  * 3. Calle del domicilio fiscal.
  * 4. Número del domicilio fiscal.
  * 5. Código postal del domicilio fiscal.
@@ -39,11 +38,11 @@ public class Persona {
     }
 
     public String toString() {
-        return "Apellido y nombre o razón social: " + identificacion + "\nCUIT: " +  cuitcuil.getTipo() + "-" + cuitcuil.getDNI() + "-"
-                + cuitcuil.getVerificador() + "\nDomicilio: " + domicilio + "\nNúmero: " + nroDomicilio
-                + "\nCódigo Postal: " + codigoPostal + "\nProvincia: " + provincia;
+        return "Apellido y nombre o razón social: " + identificacion + "\nCUIT: " + cuitcuil.getTipo() + "-" + cuitcuil.getDNI() + "-"
+                + cuitcuil.getVerificador() + "\nDomicilio: " + domicilio + "\nNúmero del domicilio: " + nroDomicilio
+                + "\nCódigo Postal: " + codigoPostal + "\nProvincia: " + provincia + "\n";
     }
-    
+
     public CuitCuil getCuitCuil() {
         return cuitcuil;
     }
@@ -51,24 +50,20 @@ public class Persona {
     public String getRazonSocial() {
         return identificacion;
     }
-    
+
     public String getApellido() {
         String apellido;
         int pos, longitud;
-        
+
         pos = 0;
         longitud = identificacion.length() - 1;
         while (identificacion.charAt(pos) != ' ' && pos < longitud) {
             pos++;
         }
-        
-        apellido = identificacion.substring(0, pos);
-        
-        return apellido;
-    }
 
-    public String getDomicilio() {
-        return domicilio;
+        apellido = identificacion.substring(0, pos);
+
+        return apellido;
     }
 
     public int getNroDomicilio() {
