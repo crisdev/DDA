@@ -57,8 +57,32 @@ Se utilizó JAVA como lenguaje de implementación.
 * [Ejercicio 4](/src/trabajoPracticoN4/clases/TestConjunto.java)
 * [Ejercicio 5](/src/trabajoPracticoN4/clases/TestMatriz.java)
 
-### Trabajo adicional
+### Simulacro primer parcial
 
+* [Matriz Diagonal](/src/simulacros/primerParcial/MatrizDiagonal.java)
+* [Numero Telefono](/src/simulacros/primerParcial/NumeroTelefono.java)
+* [Patinador](/src/simulacros/primerParcial/Patinador.java)
+* [TestPatinador](/src/simulacros/primerParcial/TestPatinador.java)
+
+### Trabajo Práctico 6: Métodos de Ordenación y Búsqueda
+
+* [Ejercicio 1](/src/trabajoPracticoN6/Ejercicio1.java)
+* [Ejercicio 2](/src/trabajoPracticoN6/Ejercicio2.java)
+* [Ejercicio 3](/src/trabajoPracticoN6/Ejercicio3.java)
+* [Ejercicio 4](/src/trabajoPracticoN6/Ejercicio4.java)
+* [Ejercicio 5](/src/trabajoPracticoN6/Ejercicio5.java)
+
+### Trabajo Práctico 7: Recursividad
+
+* [Ejercicio 3](/src/trabajoPracticoN7/Ejercicio3.java)
+* [Ejercicio 4](/src/trabajoPracticoN7/Ejercicio4.java)
+* [Ejercicio 5](/src/trabajoPracticoN7/Ejercicio5.java)
+* [Ejercicio 6](/src/trabajoPracticoN7/Ejercicio6.java)
+
+### Trabajo final de promoción
+
+* [Aleatorio](/src/trabajo/Aleatorio.java)
 * [CuitCuil](/src/trabajo/CuitCuil.java)
+* [Ordenamiento](/src/trabajo/Ordenamiento.java)
 * [Persona](/src/trabajo/Persona.java)
 * [TestPersona](/src/trabajo/TestPersona.java)
