@@ -3,12 +3,12 @@
  * a algunas de las personas que asistieron.
  * Se les preguntó: nombre, apellido, edad, cantidad de países visitados y
  * estado civil.
- * Las personas solteras con edad entre 45 y 62 años podían participarl del sorteo
+ * Las personas solteras con edad entre 45 y 62 años podían participar del sorteo
  * de un viaje a Cataratas.
  * En base a la información relevada se desea mostrar:
  * a) El promedio de edad de los asistentes encuestado.
  * b) El nombre y apellido de las personas que más países visitó.
- * c) Por cada persona indicat si podía o no participar del sorteo.
+ * c) Por cada persona indicar si podía o no participar del sorteo.
  */
 package trabajoPracticoN0;
 

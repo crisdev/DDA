@@ -4,7 +4,7 @@
  * La matriz representará en sus filas los 12 meses y en columnas
  * los años 2000, 2001, hasta el 2014 inclusive.
  * Modularizando correctamente y haciendo reuso de módulos, definir módulos para:
- * a. Calcular la cantidad de expetiendes procesados en un año determinado.
+ * a. Calcular la cantidad de expedientes procesados en un año determinado.
  * b. Calcular el promedioPorAño de expedientes procesador para un año determinado.
  * c. Obtener el mes en el cual se procesó la mayor cantidad de expedientes en el período 2000-2014.
  * d. Obtener el mes en el cual se procesó la menor cantidad de expedientes en el período 2000-2014.

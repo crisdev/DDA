@@ -1,7 +1,7 @@
 /*
  * Una empresa de alquiler de autos almacena la información de los autos que
  * tiene para alquilar de la siguiente manera: cada auto está identificado
- * por su patente (String de 6 caractere), número registrado en el odómetro,
+ * por su patente (String de 6 caracteres), número registrado en el odómetro,
  * modelo y si está disponible o no. Aplicando los conceptos vistos en teoría,
  * implementar en Java la clase Auto de acuerdo a la especificación.
  */

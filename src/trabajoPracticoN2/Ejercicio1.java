@@ -1,6 +1,6 @@
 /*
  * Declare, cree e inicialice arreglos para cada uno de los siguientes casos:
- * a. Un arreglo de vocales
+ * a. Un arreglo de vocales.
  * b. Un arreglo de enteros consecutivos del 1 al 1000.
  * c. Un arreglo de los enteros impares consecutivos entre 10000 y 50000
  * d. Un arreglo de letras del abecedario (ordenadas alfabéticamente).
