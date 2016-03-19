@@ -53,6 +53,7 @@ Profesor a cargo: Luis Reynoso.
 > 1. Obtener el valor del binario ingresado en decimal.
 > 2. Obtener el complemento a uno del número binario.
 > 3. Obtener el complemento a dos del número binario.
+
 * [Ejercicio 5](/src/trabajoPracticoN1/Ejercicio5.java)
 > Solicitar al usuario los elementos de dos conjuntos A y B de cardinalidad
 > fija (digamos n). Cada conjunto estará compuesto por caracteres. Su solución
@@ -63,6 +64,7 @@ Profesor a cargo: Luis Reynoso.
 > - unión de conjuntos
 > - diferencia entre conjuntos
 > - intersección entre conjuntos
+
 * [Ejercicio 6](/src/trabajoPracticoN1/Ejercicio6.java)
 > Un multiconjunto permite que los elementos de un conjunto estén repetidos.
 > Por ejemplo, el multiconjunto {a, a, b, b, b, c} tiene dos ocurrencias de
@@ -77,6 +79,7 @@ Profesor a cargo: Luis Reynoso.
 > - unión de conjuntos.
 > - diferencia entre conjuntos (elimine múltiples ocurrencias).
 > - intersección entre conjuntos.
+
 * [Ejercicio 7](/src/trabajoPracticoN1/Ejercicio7.java)
 > Solicitar al usuario los elementos de un conjunto A, compuesto por letras del
 > abecedario. Definir operaciones para:
@@ -99,13 +102,16 @@ Profesor a cargo: Luis Reynoso.
 > 6. Un arreglo de 15 palabras.
 > 7. Un arreglo de 15 temperaturas.
 > 8. Un arreglo de 14 alturas de personas.
+
 * [Ejercicio 2](/src/trabajoPracticoN2/Ejercicio2.java)
 > Para cada arreglo de tipos de datos enteros o reales del ejercicio anterior
 > calcule el valor promedio.
+
 * [Ejercicio 3](/src/trabajoPracticoN2/Ejercicio3.java)
 > Para los arreglos de los incisos e y f,
 > definir métodos que permitan consultar si un número o una palabra
 > (según corresponda) es parte del arreglo.
+
 * [Ejercicio 4_4](/src/trabajoPracticoN2/Ejercicio4_4.java)
 > Resolver el siguiente problema aplicando modularización
 > y arreglos:
@@ -115,6 +121,7 @@ Profesor a cargo: Luis Reynoso.
 > 1. Obtener el valor del binario ingresado en decimal.
 > 2. Obtener el complemento a uno del número binario.
 > 3. Obtener el complemento a dos del número binario.
+
 * [Ejercicio 4_5](/src/trabajoPracticoN2/Ejercicio4_5.java)
 > Solicitar al usuario los elementos de dos conjuntos A y B de cardinalidad
 > fija (digamos n). Cada conjunto estará compuesto por caracteres. Su solución
@@ -124,10 +131,13 @@ Profesor a cargo: Luis Reynoso.
 > - unión de conjuntos
 > - diferencia entre conjuntos
 > - intersección entre conjuntos
+
 * [Ejercicio 6](/src/trabajoPracticoN2/Ejercicio6.java)
 > Implementar en java el algoritmo selection sort.
+
 * [Ejercicio 7](/src/trabajoPracticoN2/Ejercicio7.java)
 > Implementar el algoritmo de búsqueda binaria.
+
 * [Ejercicio 12](/src/trabajoPracticoN2/Ejercicio12.java)
 > Implementar bubble sort e insertion sort y verificar la implementación con ejemplos.
 
@@ -146,6 +156,7 @@ Profesor a cargo: Luis Reynoso.
 > 8. Sumar los elementos de una fila determinada.
 > 9. Sumar los elementos de una columna.
 > 10. Multiplicación de matrices.
+
 * [Ejercicio 4](/src/trabajoPracticoN3/Ejercicio4.java)
 > Supongamos que almacenamos en una matriz la cantidad de expedientes que
 > un organismo del estado procesa por mes desde el año 2000.
@@ -177,20 +188,24 @@ Profesor a cargo: Luis Reynoso.
 
 * [Ejercicio 1](/src/trabajoPracticoN4/clases/Especie.java)
 > Implementación TDA especie.
+
 * [Ejercicio 2](/src/trabajoPracticoN4/clases/Racional.java)
 > Implementar el TDA Racional respetando la definición dada en la guía.
+
 * [Ejercicio 3](/src/trabajoPracticoN4/clases/Auto.java)
 > Una empresa de alquiler de autos almacena la información de los autos que
 > tiene para alquilar de la siguiente manera: cada auto está identificado
 > por su patente (String de 6 caracteres), número registrado en el odómetro,
 > modelo y si está disponible o no. Aplicando los conceptos vistos en teoría,
 > implementar en Java la clase Auto de acuerdo a la especificación.
+
 * [Ejercicio 4](/src/trabajoPracticoN4/clases/Conjunto.java)
 > Construir el TDA para tratar la abstracción matemática Conjunto a partir
 > de las operaciones detalladas más abajo, haciendo la correcta clasificación
 > de las mismas: Constructoras, Observadoras, Modificadoras y Propias del tipo,
 > que manejen conjuntos de números naturales del 1 al 100. Armar la caja UML
 > de la clase Conjunto. (Ayuda: Usar un arreglo booleano).
+
 * [Ejercicio 5](/src/trabajoPracticoN4/clases/Matriz.java)
 > Especificar el esquema UML para una Matriz que posea una estructura capaz de
 > almacenar una matriz de enteros de una dimensión definida por el usuario y
@@ -210,13 +225,17 @@ Profesor a cargo: Luis Reynoso.
 > La especie rinoceronte tiene una población de 100 y una tasa de crecimiento de 15%
 > y la especie elefante tiene una población de 10 y una tasa de crecimiento de 35%.
 > ¿Cuántos años le llevará a la población elefante superar a la especie rinoceronte?
+
 * [Ejercicio 2](/src/trabajoPracticoN4/clases/TestRacional.java)
+
 * [Ejercicio 3](/src/trabajoPracticoN4/clases/TestAuto.java)
 > Proveer al usuario un menú con las siguientes opciones:
 > 1. Ingresar un auto: Permitir al usuario realizar la carga de uno o más autos.
 > El usuario puede ingresar a esta opción de menú reiteradas veces.
+
 * [Ejercicio 4](/src/trabajoPracticoN4/clases/TestConjunto.java)
 > Escribir en Java una clase TestConjunto para probar todos los métodos implementados.
+
 * [Ejercicio 5](/src/trabajoPracticoN4/clases/TestMatriz.java)
 > Implementar la clase TestMatriz.
 
@@ -226,6 +245,7 @@ Profesor a cargo: Luis Reynoso.
 > Implementar un módulo en Java que dada una matriz de NxN de caracteres
 > verifique si todos los caracteres en las celdas ubicadas en la diagonal
 > secundaria son iguales.
+
 * [Numero Telefono](/src/simulacros/primerParcial/NumeroTelefono.java)
 > En una provincia se están cambiando los números de teléfonos celulares de
 > 8 dígitos de la siguiente manera: luego del 15 se agrega un 4, los 3 números
@@ -247,6 +267,7 @@ Profesor a cargo: Luis Reynoso.
 > la implementación de los siguientes métodos: constructores, una operación
 > observadora a elección, el método toString, una operación modificadora a
 > elección y las operaciones propias del tipo.
+
 * [TestPatinador](/src/simulacros/primerParcial/TestPatinador.java)
 > Implementar la clase TestPatinador que a través de un menú de opciones permita:
 > 1. Carga los datos de los patinadores. El arreglo será dimensionado con un
@@ -266,6 +287,7 @@ Profesor a cargo: Luis Reynoso.
 > reciba un arreglo de números enteros y verifique si los elementos del
 > arreglo respetan un orden creciente o no.
 > Calcular su tiempo de ejecución.
+
 * [Ejercicio 2](/src/trabajoPracticoN6/Ejercicio2.java)
 > Realizar el pseudocódigo y la implementación Java de un método que reciba
 > un arreglo ordenado (en forma creciente) de números enteros y un valor n,
@@ -275,6 +297,7 @@ Profesor a cargo: Luis Reynoso.
 >
 > Indicar la técnica algorítmica utilizada. Calcular el tiempo de ejecución de
 > cada algoritmo.
+
 * [Ejercicio 3](/src/trabajoPracticoN6/Ejercicio3.java)
 > Realizar el pseudocódigo y la implementación en java de un método de ordenación
 > para cada esquema algorítmico que se lista a continuación:
@@ -286,6 +309,7 @@ Profesor a cargo: Luis Reynoso.
 > (orden creciente). Calcular el tiempo de ejecución de cada algoritmo.
 >
 > En cada método, ¿qué sentencias deben cambiar para ordenar el arreglo en orden decreciente?
+
 * [Ejercicio 4](/src/trabajoPracticoN6/Ejercicio4.java)
 > Realizar el pseudocódigo y la implementación en java de un método que reciba
 > como datos de entrada dos arreglos de enteros ordenados en forma creciente,
@@ -294,6 +318,7 @@ Profesor a cargo: Luis Reynoso.
 >
 > Ejemplo, si A = [3,7,10,15] y B = [5,6,7] entonces C = [3,5,6,7,7,10,15].
 > Calcular su tiempo de ejecución.
+
 * [Ejercicio 5](/src/trabajoPracticoN6/Ejercicio5.java)
 > Realizar el pseudocódigo y la implementación en java del método de la burbuja
 > mejorado, que consiste en finalizar las iteraciones del método burbuja,
@@ -310,6 +335,7 @@ Profesor a cargo: Luis Reynoso.
 > dígito t en el número n. Por ejemplo si n = 13234 y t = 3, el resultado debe ser 2.
 >
 > Realizar la traza para los valores del ejemplo.
+
 * [Ejercicio 4](/src/trabajoPracticoN7/Ejercicio4.java)
 > Escribir las siguientes rutinas recursivas en java, realizando las respectivas
 > trazas sobre el siguiente arreglo unidimensional:
@@ -319,6 +345,7 @@ Profesor a cargo: Luis Reynoso.
 > en caso contrario. Traza para n = 8 y n = 6.
 > 2. Devolver el valor de verdad en una función que determine si los elementos
 > del arreglo respetan un orden creciente o no.
+
 * [Ejercicio 5](/src/trabajoPracticoN7/Ejercicio5.java)
 > Dada una secuencia S de números enteros positivos (finalizada en 0, que no se
 > considera parte de la secuencia) ingresados por teclado, escribir planteos
@@ -327,6 +354,7 @@ Profesor a cargo: Luis Reynoso.
 >
 > 1. Calcular cuántos enteros múltiplos de 4 hay en la secuencia.
 > 2. Determinar el máximo entero perteneciente a la secuencia.
+
 * [Ejercicio 6](/src/trabajoPracticoN7/Ejercicio6.java)
 > Dada una secuencia de caracteres (finalizada en ".") ingresada por teclado,
 > escribir planteos recursivos, desarrollar sus correspondientes métodos y
@@ -340,6 +368,7 @@ Profesor a cargo: Luis Reynoso.
 
 * [Aleatorio](/src/trabajo/Aleatorio.java)
 > Generador de elementos aleatorios.
+
 * [CuitCuil](/src/trabajo/CuitCuil.java)
 > Tanto el CUIT (Clave Única de Identificación Tributaria) como la CUIL
 > (Clave Única de Identificación Laboral) constan de tres partes:
@@ -350,9 +379,11 @@ Profesor a cargo: Luis Reynoso.
 >
 > El tipo puede ser 20, 23 y 27 para personas físicas sin importar el género o
 > identidad; o 30, 33 para empresas o personas jurídicas.
+
 * [Ordenamiento](/src/trabajo/Ordenamiento.java)
 > Esta clase incluye los métodos de ordenamiento implementados
 > sobre la clase TestPersona: INSERTION, SELECTION, BUBBLE, MERGE, QUICK y HEAP.
+
 * [Persona](/src/trabajo/Persona.java)
 > Implementar un TDA Persona que modelará tanto a personas física o jurídicas
 > con los siguientes atributos:
@@ -362,6 +393,7 @@ Profesor a cargo: Luis Reynoso.
 > 4. Número del domicilio fiscal.
 > 5. Código postal del domicilio fiscal.
 > 6. Provincia del domicilio fiscal.
+
 * [TestPersona](/src/trabajo/TestPersona.java)
 > Implementar un TDA TestPersona, que permita cargar un conjunto de personas
 > (física y jurídicas).
