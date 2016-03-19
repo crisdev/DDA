@@ -16,6 +16,7 @@ Profesor a cargo: Luis Reynoso.
 
 * [Ejercicio 1](/src/trabajoPracticoN0/Ejercicio1.java)
     > Implementar en Java el algoritmo indicado en el TP.
+    
 * [Ejercicio 6](/src/trabajoPracticoN0/Ejercicio6.java)
 > En un evento realizado por la empresa de turismo Argentar se hizo una encuesta
 > a algunas de las personas que asistieron.
