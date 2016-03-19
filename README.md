@@ -227,9 +227,12 @@ Profesor a cargo: Luis Reynoso.
 > ¿Cuántos años le llevará a la población elefante superar a la especie rinoceronte?
 
 * [Ejercicio 2](/src/trabajoPracticoN4/clases/TestRacional.java)
+> Escribir un programa testRacional que permita cargar y operar con racionales.
+> Debe contar con un menú de opciones para probar toda la funcionalidad del TDA.
 
 * [Ejercicio 3](/src/trabajoPracticoN4/clases/TestAuto.java)
 > Proveer al usuario un menú con las siguientes opciones:
+>
 > 1. Ingresar un auto: Permitir al usuario realizar la carga de uno o más autos.
 > El usuario puede ingresar a esta opción de menú reiteradas veces.
 
@@ -258,6 +261,7 @@ Profesor a cargo: Luis Reynoso.
 > dígitos que representa un número de celular, es decir que no posee espacios en
 > blanco, ni caracteres especiales, y la longitud de la cadena de entrada es
 > siempre 8.
+
 * [Patinador](/src/simulacros/primerParcial/Patinador.java)
 > En un club de patín artístico se ha organizado una exhibición que incluye a
 > las siguientes categorías: A, B, C, I (intermedia) y P (principiante).
@@ -374,7 +378,7 @@ Profesor a cargo: Luis Reynoso.
 > (Clave Única de Identificación Laboral) constan de tres partes:
 > El tipo, el número y el dígito verificador separados por guión.
 > En el siguiente ejemplo se toma como CUIT el número ##-12345678-X donde
-> ## es el tipo, 12345678 es el número de DNI o número de sociedad y X es
+> \## es el tipo, 12345678 es el número de DNI o número de sociedad y X es
 > el dígito verificador.
 >
 > El tipo puede ser 20, 23 y 27 para personas físicas sin importar el género o
