@@ -15,7 +15,7 @@ Profesor a cargo: Luis Reynoso.
 ### Trabajo Práctico 0: Repaso
 
 * [Ejercicio 1](/src/trabajoPracticoN0/Ejercicio1.java)
-    > Implementar en Java el algoritmo indicado en el TP.
+> Implementar en Java el algoritmo indicado en el TP.
     
 * [Ejercicio 6](/src/trabajoPracticoN0/Ejercicio6.java)
 > En un evento realizado por la empresa de turismo Argentar se hizo una encuesta
@@ -31,6 +31,7 @@ Profesor a cargo: Luis Reynoso.
 > 1. El promedio de edad de los asistentes encuestado.
 > 2. El nombre y apellido de las personas que más países visitó.
 > 3. Por cada persona indicar si podía o no participar del sorteo.
+
 * [Ejercicio 7](/src/trabajoPracticoN0/Ejercicio7.java)
 > En una exposición de vehículos se administra la información de los autos
 > que están exhibidos. Para cada auto se desea conocer: patente, marca,
